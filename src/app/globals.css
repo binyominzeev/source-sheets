@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --sheet-font-size: 100%;
 }
 
 @theme inline {
@@ -44,11 +45,17 @@ body {
   line-height: 1.8;
 }
 
+/* Sheet content font size (controlled by TOC buttons) */
+.sheet-content {
+  font-size: var(--sheet-font-size);
+}
+
 /* Table of Contents */
 .toc-box {
   position: sticky;
-  top: 1rem;
-  max-height: calc(100vh - 2rem);
+  /* Offset below the sticky header (~3rem) plus a small gap */
+  top: 3.5rem;
+  max-height: calc(100vh - 4.5rem);
   overflow-y: auto;
   scrollbar-width: thin;
 }

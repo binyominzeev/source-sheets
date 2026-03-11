@@ -12,8 +12,21 @@ interface TableOfContentsProps {
   entries: TocEntry[];
 }
 
+const FONT_SIZES = [75, 85, 100, 115, 130];
+const DEFAULT_FONT_SIZE_INDEX = 2; // index into FONT_SIZES for 100%
+
 export default function TableOfContents({ entries }: TableOfContentsProps) {
   const [collapsed, setCollapsed] = useState(false);
+  const [fontSizeIdx, setFontSizeIdx] = useState(DEFAULT_FONT_SIZE_INDEX);
+
+  function changeFontSize(delta: number) {
+    const next = Math.max(0, Math.min(FONT_SIZES.length - 1, fontSizeIdx + delta));
+    setFontSizeIdx(next);
+    document.documentElement.style.setProperty(
+      "--sheet-font-size",
+      `${FONT_SIZES[next]}%`
+    );
+  }
 
   if (entries.length === 0) return null;
 
@@ -24,13 +37,34 @@ export default function TableOfContents({ entries }: TableOfContentsProps) {
     >
       <div className="flex items-center justify-between px-2 py-1.5 border-b border-gray-200 bg-gray-100 rounded-t">
         <span className="font-semibold text-gray-700 text-xs">Contents</span>
-        <button
-          onClick={() => setCollapsed((c) => !c)}
-          className="text-gray-400 hover:text-gray-600 text-xs ml-2"
-          aria-label={collapsed ? "Expand contents" : "Collapse contents"}
-        >
-          [{collapsed ? "show" : "hide"}]
-        </button>
+        <div className="flex items-center gap-1">
+          {/* Font size controls */}
+          <button
+            onClick={() => changeFontSize(-1)}
+            disabled={fontSizeIdx === 0}
+            className="text-gray-500 hover:text-gray-800 disabled:opacity-50 text-xs px-1 leading-none"
+            aria-label="Decrease font size"
+            title="Decrease font size"
+          >
+            A-
+          </button>
+          <button
+            onClick={() => changeFontSize(1)}
+            disabled={fontSizeIdx === FONT_SIZES.length - 1}
+            className="text-gray-500 hover:text-gray-800 disabled:opacity-50 text-sm px-1 leading-none"
+            aria-label="Increase font size"
+            title="Increase font size"
+          >
+            A+
+          </button>
+          <button
+            onClick={() => setCollapsed((c) => !c)}
+            className="text-gray-400 hover:text-gray-600 text-xs ml-1"
+            aria-label={collapsed ? "Expand contents" : "Collapse contents"}
+          >
+            [{collapsed ? "show" : "hide"}]
+          </button>
+        </div>
       </div>
 
       {!collapsed && (

@@ -158,9 +158,9 @@ export default async function SheetPage({ params, searchParams }: Props) {
           </div>
 
           {/* Two-column layout: content + TOC */}
-          <div className="flex gap-6 items-start">
+          <div className="flex gap-6">
             {/* Main content */}
-            <article className="flex-1 min-w-0">
+            <article className="flex-1 min-w-0 sheet-content">
               {sheet.sources.map((source, idx) => (
                 <SheetSourceItem
                   key={idx}
