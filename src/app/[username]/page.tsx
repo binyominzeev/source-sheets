@@ -88,12 +88,7 @@ export default async function UserSheetsPage({ params }: Props) {
               </a>
             </p>
             <RefreshButton username={username} />
-            <ImportSheetsDialog
-              username={username}
-              onSuccess={() => {
-                /* page will be revalidated server-side; user can refresh */
-              }}
-            />
+            <ImportSheetsDialog username={username} />
           </div>
         </div>
 
