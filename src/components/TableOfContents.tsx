@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { FONT_SIZES, DEFAULT_FONT_SIZE_INDEX } from "@/config/fontSizes";
+import {
+  EN_FONT_SIZES,
+  HE_FONT_SIZES,
+  DEFAULT_EN_FONT_SIZE_INDEX,
+  DEFAULT_HE_FONT_SIZE_INDEX,
+} from "@/config/fontSizes";
 
 export interface TocEntry {
   id: string;
@@ -16,40 +21,81 @@ interface TableOfContentsProps {
 export default function TableOfContents({ entries }: TableOfContentsProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [fontSizeIdx, setFontSizeIdx] = useState(DEFAULT_FONT_SIZE_INDEX);
+  const [enFontSizeIdx, setEnFontSizeIdx] = useState(DEFAULT_EN_FONT_SIZE_INDEX);
+  const [heFontSizeIdx, setHeFontSizeIdx] = useState(DEFAULT_HE_FONT_SIZE_INDEX);
 
-  function changeFontSize(e: React.MouseEvent, delta: number) {
-    // Prevent the click from toggling the mobile collapsible when inside its header
-    e.stopPropagation();
-    const next = Math.max(0, Math.min(FONT_SIZES.length - 1, fontSizeIdx + delta));
-    setFontSizeIdx(next);
+  function applyFontSizes(enIdx: number, heIdx: number) {
+    const enPercent = EN_FONT_SIZES[enIdx];
+    const hePercent = HE_FONT_SIZES[heIdx];
     document.documentElement.style.setProperty(
-      "--sheet-font-size",
-      `${FONT_SIZES[next]}%`
+      "--sheet-font-size-en",
+      `${enPercent}%`
     );
+    // Hebrew zoom is expressed as a ratio relative to the English zoom so that
+    // the two controls are visually independent (avoids CSS zoom compounding).
+    // Guard against division by zero in case EN_FONT_SIZES is misconfigured.
+    const heRatio = enPercent > 0 ? hePercent / enPercent : 1;
+    document.documentElement.style.setProperty(
+      "--sheet-font-size-he-ratio",
+      String(heRatio)
+    );
+  }
+
+  function changeEnFontSize(e: React.MouseEvent, delta: number) {
+    e.stopPropagation();
+    const next = Math.max(0, Math.min(EN_FONT_SIZES.length - 1, enFontSizeIdx + delta));
+    setEnFontSizeIdx(next);
+    applyFontSizes(next, heFontSizeIdx);
+  }
+
+  function changeHeFontSize(e: React.MouseEvent, delta: number) {
+    e.stopPropagation();
+    const next = Math.max(0, Math.min(HE_FONT_SIZES.length - 1, heFontSizeIdx + delta));
+    setHeFontSizeIdx(next);
+    applyFontSizes(enFontSizeIdx, next);
   }
 
   if (entries.length === 0) return null;
 
   const fontControls = (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1.5">
+      <span className="text-gray-400 text-xs leading-none">En:</span>
       <button
-        onClick={(e) => changeFontSize(e, -1)}
-        disabled={fontSizeIdx === 0}
+        onClick={(e) => changeEnFontSize(e, -1)}
+        disabled={enFontSizeIdx === 0}
         className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-xs px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
-        aria-label="Decrease font size"
-        title="Decrease font size"
+        aria-label="Decrease English font size"
+        title="Decrease English font size"
       >
         A-
       </button>
       <button
-        onClick={(e) => changeFontSize(e, 1)}
-        disabled={fontSizeIdx === FONT_SIZES.length - 1}
+        onClick={(e) => changeEnFontSize(e, 1)}
+        disabled={enFontSizeIdx === EN_FONT_SIZES.length - 1}
         className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-sm px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
-        aria-label="Increase font size"
-        title="Increase font size"
+        aria-label="Increase English font size"
+        title="Increase English font size"
       >
         A+
+      </button>
+      <span className="text-gray-400 text-xs leading-none">He:</span>
+      <button
+        onClick={(e) => changeHeFontSize(e, -1)}
+        disabled={heFontSizeIdx === 0}
+        className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-xs px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
+        aria-label="Decrease Hebrew font size"
+        title="Decrease Hebrew font size"
+      >
+        א-
+      </button>
+      <button
+        onClick={(e) => changeHeFontSize(e, 1)}
+        disabled={heFontSizeIdx === HE_FONT_SIZES.length - 1}
+        className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-sm px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
+        aria-label="Increase Hebrew font size"
+        title="Increase Hebrew font size"
+      >
+        א+
       </button>
     </div>
   );

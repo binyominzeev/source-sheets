@@ -3,7 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --sheet-font-size: 100%;
+  --sheet-font-size-en: 100%;
+  --sheet-font-size-he-ratio: 1;
 }
 
 @theme inline {
@@ -45,9 +46,14 @@ body {
   line-height: 1.8;
 }
 
-/* Sheet content font size (controlled by TOC buttons) */
+/* Sheet content font size (English — controlled by TOC buttons) */
 .sheet-content {
-  zoom: var(--sheet-font-size);
+  zoom: var(--sheet-font-size-en);
+}
+
+/* Hebrew text font size — ratio relative to English zoom to avoid compounding */
+.sheet-content .he-text {
+  zoom: var(--sheet-font-size-he-ratio);
 }
 
 /* Table of Contents */

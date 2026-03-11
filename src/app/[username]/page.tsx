@@ -50,8 +50,8 @@ export default async function UserSheetsPage({ params }: Props) {
         title: imp.title,
         tags: [],
         views: 0,
-        created: imp.created,
-        updated: imp.updated,
+        created: imp.importedAt,
+        updated: imp.importedAt,
       });
     }
   }
