@@ -157,10 +157,14 @@ export default async function SheetPage({ params, searchParams }: Props) {
             </div>
           </div>
 
-          {/* Two-column layout: content + TOC */}
-          <div className="flex gap-6">
+          {/*
+           * Responsive two-column layout.
+           * On mobile/tablet (flex-col): TOC appears first (order-1) then content (order-2).
+           * On desktop lg+ (flex-row): content appears first on the left, TOC on the right.
+           */}
+          <div className="flex flex-col lg:flex-row gap-6">
             {/* Main content */}
-            <article className="flex-1 min-w-0 sheet-content">
+            <article className="order-2 lg:order-1 flex-1 min-w-0 sheet-content">
               {sheet.sources.map((source, idx) => (
                 <SheetSourceItem
                   key={idx}
@@ -171,40 +175,13 @@ export default async function SheetPage({ params, searchParams }: Props) {
               ))}
             </article>
 
-            {/* Table of Contents - right sidebar */}
+            {/* Table of Contents – handles both mobile (top) and desktop (right sidebar) layouts */}
             {tocEntries.length > 0 && (
-              <div className="hidden lg:block no-print">
+              <div className="order-1 lg:order-2 no-print">
                 <TableOfContents entries={tocEntries} />
               </div>
             )}
           </div>
-
-          {/* TOC for small screens - inline at top */}
-          {tocEntries.length > 0 && (
-            <div className="lg:hidden mb-6 no-print">
-              <details className="border border-gray-200 rounded-lg overflow-hidden">
-                <summary className="bg-gray-50 px-3 py-2 text-xs font-semibold text-gray-700 cursor-pointer">
-                  Contents ({tocEntries.length} items)
-                </summary>
-                <div className="px-3 py-2">
-                  <ol className="text-xs space-y-1">
-                    {tocEntries.map((entry, idx) => (
-                      <li key={entry.id}>
-                        <a
-                          href={`#${entry.id}`}
-                          className={`text-blue-600 hover:underline ${
-                            entry.level === 1 ? "font-medium" : "pl-3"
-                          }`}
-                        >
-                          {idx + 1}. {entry.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </details>
-            </div>
-          )}
         </div>
       ) : null}
 

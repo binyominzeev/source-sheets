@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getProfile, getUserSheets, SheetSummary } from "@/lib/sefaria";
+import { getImportedSheets } from "@/lib/storage";
 import SheetListControls from "@/components/SheetListControls";
 import RefreshButton from "@/components/RefreshButton";
+import ImportSheetsDialog from "@/components/ImportSheetsDialog";
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -37,6 +39,23 @@ export default async function UserSheetsPage({ params }: Props) {
     error = err instanceof Error ? err.message : "Failed to load sheets";
   }
 
+  // Merge in any manually-imported sheets (server-side JSON store).
+  // We only add sheets that aren't already in the public list to avoid duplicates.
+  const publicIds = new Set(sheets.map((s) => s.id));
+  const imported = getImportedSheets(username);
+  for (const imp of imported) {
+    if (!publicIds.has(imp.id)) {
+      sheets.push({
+        id: imp.id,
+        title: imp.title,
+        tags: [],
+        views: 0,
+        created: imp.created,
+        updated: imp.updated,
+      });
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -56,7 +75,7 @@ export default async function UserSheetsPage({ params }: Props) {
           <h1 className="text-3xl font-bold text-gray-900 mb-1">
             {profileName}
           </h1>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <p className="text-gray-500 text-sm">
               Source sheets on{" "}
               <a
@@ -69,6 +88,12 @@ export default async function UserSheetsPage({ params }: Props) {
               </a>
             </p>
             <RefreshButton username={username} />
+            <ImportSheetsDialog
+              username={username}
+              onSuccess={() => {
+                /* page will be revalidated server-side; user can refresh */
+              }}
+            />
           </div>
         </div>
 
