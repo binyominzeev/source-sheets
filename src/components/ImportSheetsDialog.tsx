@@ -115,7 +115,7 @@ export default function ImportSheetsDialog({
                 onChange={(e) => setInput(e.target.value)}
                 rows={5}
                 placeholder={
-                  "https://www.sefaria.org/sheets/12345\nhttps://www.sefaria.org/sheets/67890\n67891"
+                  "https://voices.sefaria.org/sheets/12345\nhttps://voices.sefaria.org/sheets/67890"
                 }
                 className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 resize-y font-mono"
                 disabled={loading}
