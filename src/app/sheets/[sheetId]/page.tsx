@@ -146,12 +146,12 @@ export default async function SheetPage({ params, searchParams }: Props) {
               {sheet.ownerName && <span>By {sheet.ownerName}</span>}
               <span>·</span>
               <span>{sheet.views ?? 0} views</span>
-              {sheet.topics?.slice(0, 5).map((topic) => (
+              {sheet.topics?.filter((topic) => topic.title?.en).slice(0, 5).map((topic) => (
                 <span
                   key={topic.slug}
                   className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full"
                 >
-                  {topic.title.en}
+                  {topic.title?.en}
                 </span>
               ))}
             </div>
