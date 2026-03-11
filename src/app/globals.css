@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Hebrew text direction */
+.he-text {
+  direction: rtl;
+  font-family: "Frank Ruhl Libre", "SBL Hebrew", serif;
+}
+
+/* Bilingual layout */
+.bilingual-source {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .bilingual-source {
+    grid-template-columns: 1fr;
+  }
+  .bilingual-source .he-text {
+    order: -1;
+  }
+}
+
+/* Sheet source typography */
+.sheet-source-text p,
+.sheet-source-text span {
+  line-height: 1.8;
+}
+
+/* Table of Contents */
+.toc-box {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .toc-box {
+    position: static;
+    max-height: none;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+
+  .sheet-source {
+    page-break-inside: avoid;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+}

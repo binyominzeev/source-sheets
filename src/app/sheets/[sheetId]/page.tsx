@@ -1,0 +1,224 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { getSheet, stripHtml } from "@/lib/sefaria";
+import TableOfContents, { TocEntry } from "@/components/TableOfContents";
+import SheetSourceItem from "@/components/SheetSourceItem";
+import PrintButton from "@/components/PrintButton";
+
+interface Props {
+  params: Promise<{ sheetId: string }>;
+  searchParams: Promise<{ lang?: string; from?: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { sheetId } = await params;
+  try {
+    const sheet = await getSheet(sheetId);
+    return {
+      title: `${stripHtml(sheet.title)} — Source Sheets`,
+      description: sheet.summary ? stripHtml(sheet.summary) : undefined,
+    };
+  } catch {
+    return { title: "Sheet — Source Sheets" };
+  }
+}
+
+function buildAnchorId(index: number, ref?: string): string {
+  if (ref) {
+    return `src-${ref.replace(/[\s:,]/g, "-").replace(/[^a-zA-Z0-9-_]/g, "")}-${index}`;
+  }
+  return `src-${index}`;
+}
+
+export default async function SheetPage({ params, searchParams }: Props) {
+  const { sheetId } = await params;
+  const { lang: langParam, from } = await searchParams;
+
+  // Validate lang param: "en", "he", "bi"
+  const lang: "en" | "he" | "bi" =
+    langParam === "en" || langParam === "he" || langParam === "bi"
+      ? langParam
+      : "bi";
+
+  let sheet = null;
+  let error: string | null = null;
+
+  try {
+    sheet = await getSheet(sheetId);
+  } catch (err) {
+    error = err instanceof Error ? err.message : "Failed to load sheet";
+  }
+
+  // Build TOC entries from sources
+  const tocEntries: TocEntry[] = [];
+  if (sheet) {
+    sheet.sources.forEach((source, idx) => {
+      const anchorId = buildAnchorId(idx, source.ref);
+      if (source.title && !source.ref) {
+        tocEntries.push({
+          id: anchorId,
+          label: stripHtml(source.title).trim() || `Section ${idx + 1}`,
+          level: 1,
+        });
+      } else if (source.ref) {
+        tocEntries.push({
+          id: anchorId,
+          label: source.ref,
+          level: 2,
+        });
+      }
+    });
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-10 no-print">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-2 text-sm min-w-0">
+            <Link href="/" className="text-gray-400 hover:text-gray-600 shrink-0">
+              ← Home
+            </Link>
+            {from && (
+              <>
+                <span className="text-gray-300">/</span>
+                <Link
+                  href={`/${from}`}
+                  className="text-gray-400 hover:text-gray-600 shrink-0"
+                >
+                  {from}
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* Language switcher */}
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-gray-500 text-xs">Language:</span>
+            {(["bi", "en", "he"] as const).map((langOption) => (
+              <a
+                key={langOption}
+                href={`/sheets/${sheetId}?lang=${langOption}${from ? `&from=${from}` : ""}`}
+                className={`px-2 py-0.5 rounded text-xs ${
+                  lang === langOption
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+              >
+                {langOption === "bi" ? "Both" : langOption === "en" ? "English" : "Hebrew"}
+              </a>
+            ))}
+            <a
+              href={`https://www.sefaria.org/sheets/${sheetId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 text-xs text-gray-400 hover:text-blue-500"
+            >
+              View on Sefaria ↗
+            </a>
+            <PrintButton />
+          </div>
+        </div>
+      </header>
+
+      {error ? (
+        <div className="max-w-4xl mx-auto px-4 py-12 text-center">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <p className="text-red-700 font-medium">Could not load sheet</p>
+            <p className="text-red-500 text-sm mt-1">{error}</p>
+          </div>
+        </div>
+      ) : sheet ? (
+        <div className="max-w-6xl mx-auto px-4 py-6">
+          {/* Sheet title & meta */}
+          <div className="mb-6">
+            <h1
+              className="text-3xl font-bold text-gray-900 mb-2"
+              dangerouslySetInnerHTML={{ __html: sheet.title }}
+            />
+            {sheet.summary && (
+              <p
+                className="text-gray-600 text-sm mb-3"
+                dangerouslySetInnerHTML={{ __html: sheet.summary }}
+              />
+            )}
+            <div className="flex flex-wrap gap-2 items-center text-xs text-gray-400">
+              {sheet.ownerName && <span>By {sheet.ownerName}</span>}
+              <span>·</span>
+              <span>{sheet.views ?? 0} views</span>
+              {sheet.topics?.slice(0, 5).map((topic) => (
+                <span
+                  key={topic.slug}
+                  className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full"
+                >
+                  {topic.title.en}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Two-column layout: content + TOC */}
+          <div className="flex gap-6 items-start">
+            {/* Main content */}
+            <article className="flex-1 min-w-0">
+              {sheet.sources.map((source, idx) => (
+                <SheetSourceItem
+                  key={idx}
+                  source={source}
+                  lang={lang}
+                  anchorId={buildAnchorId(idx, source.ref)}
+                />
+              ))}
+            </article>
+
+            {/* Table of Contents - right sidebar */}
+            {tocEntries.length > 0 && (
+              <div className="hidden lg:block no-print">
+                <TableOfContents entries={tocEntries} />
+              </div>
+            )}
+          </div>
+
+          {/* TOC for small screens - inline at top */}
+          {tocEntries.length > 0 && (
+            <div className="lg:hidden mb-6 no-print">
+              <details className="border border-gray-200 rounded-lg overflow-hidden">
+                <summary className="bg-gray-50 px-3 py-2 text-xs font-semibold text-gray-700 cursor-pointer">
+                  Contents ({tocEntries.length} items)
+                </summary>
+                <div className="px-3 py-2">
+                  <ol className="text-xs space-y-1">
+                    {tocEntries.map((entry, idx) => (
+                      <li key={entry.id}>
+                        <a
+                          href={`#${entry.id}`}
+                          className={`text-blue-600 hover:underline ${
+                            entry.level === 1 ? "font-medium" : "pl-3"
+                          }`}
+                        >
+                          {idx + 1}. {entry.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </details>
+            </div>
+          )}
+        </div>
+      ) : null}
+
+      <footer className="text-center py-6 text-xs text-gray-300 no-print">
+        Powered by{" "}
+        <a
+          href="https://www.sefaria.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Sefaria API
+        </a>
+      </footer>
+    </div>
+  );
+}
