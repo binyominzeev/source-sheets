@@ -1,1 +1,1984 @@
-{}
+{
+  "binyomin-szanto-varnagy": {
+    "422287": {
+      "id": 422287,
+      "title": "Siluách háKén – irracionális?",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "423554": {
+      "id": 423554,
+      "title": "Neciv",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "424886": {
+      "id": 424886,
+      "title": "Áfár min háádámá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "424949": {
+      "id": 424949,
+      "title": "Nichnaszim kohanim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "425294": {
+      "id": 425294,
+      "title": "Curá Áchroná",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "425948": {
+      "id": 425948,
+      "title": "Hamevasel besabat chakira",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "426366": {
+      "id": 426366,
+      "title": "Kulmusz halev",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "427329": {
+      "id": 427329,
+      "title": "Minden vilagnezet tokeletlen",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "427578": {
+      "id": 427578,
+      "title": "Hod veHadar Malbim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "428040": {
+      "id": 428040,
+      "title": "Bal taschit Maharal",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "428041": {
+      "id": 428041,
+      "title": "Lachin machmat",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "428784": {
+      "id": 428784,
+      "title": "Chomer bemochek",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "442245": {
+      "id": 442245,
+      "title": "Ochel mitoch logika",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "442519": {
+      "id": 442519,
+      "title": "Hónapnevek, számok",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "443763": {
+      "id": 443763,
+      "title": "Ál táámin beácmechá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "444167": {
+      "id": 444167,
+      "title": "Újság, színház",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "446616": {
+      "id": 446616,
+      "title": "Állatok lelke",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "448852": {
+      "id": 448852,
+      "title": "Három éves betulim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "454061": {
+      "id": 454061,
+      "title": "Mezonos – with other foods",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "454141": {
+      "id": 454141,
+      "title": "Neciv Mikéc",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "454620": {
+      "id": 454620,
+      "title": "Pirszum hánész",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "455276": {
+      "id": 455276,
+      "title": "Neciv Vájigás",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "455733": {
+      "id": 455733,
+      "title": "Együtt imádkozni",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "456360": {
+      "id": 456360,
+      "title": "Neciv Vájechi",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "457943": {
+      "id": 457943,
+      "title": "Bris Shaas haDchak",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "458079": {
+      "id": 458079,
+      "title": "Neciv Smot",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "458199": {
+      "id": 458199,
+      "title": "Lév vs ruách",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "458891": {
+      "id": 458891,
+      "title": "Birkat hamazon",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "459719": {
+      "id": 459719,
+      "title": "Neciv Váérá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "461291": {
+      "id": 461291,
+      "title": "Neciv Bo",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "462952": {
+      "id": 462952,
+      "title": "Neciv Besálách",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "463115": {
+      "id": 463115,
+      "title": "Elmenni a templom előtt",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "464163": {
+      "id": 464163,
+      "title": "Sabat Salom",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "464412": {
+      "id": 464412,
+      "title": "Gerim at Sinai",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "464771": {
+      "id": 464771,
+      "title": "Neciv Jitró",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "465169": {
+      "id": 465169,
+      "title": "Chochmat haparcuf",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "466168": {
+      "id": 466168,
+      "title": "Bet reecha, szadehu",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "466671": {
+      "id": 466671,
+      "title": "The First Shema",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "466681": {
+      "id": 466681,
+      "title": "Neciv Mispátim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "467377": {
+      "id": 467377,
+      "title": "Modim, chajenu meszurim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "467411": {
+      "id": 467411,
+      "title": "Et miszpar jamecha",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "468432": {
+      "id": 468432,
+      "title": "Cicit bracha",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "469029": {
+      "id": 469029,
+      "title": "Neciv Trumá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "470075": {
+      "id": 470075,
+      "title": "iPhone ávédá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "470133": {
+      "id": 470133,
+      "title": "Neciv Tecáve",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "472051": {
+      "id": 472051,
+      "title": "Neciv Ki Tiszá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "473257": {
+      "id": 473257,
+      "title": "Ch\"Sz Vájákhél – Neciv Pekudé",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "474895": {
+      "id": 474895,
+      "title": "Neciv Vájikrá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "475124": {
+      "id": 475124,
+      "title": "Hálél",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "476622": {
+      "id": 476622,
+      "title": "Trumát hádesen / Ruhacsere",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "476630": {
+      "id": 476630,
+      "title": "Neciv Cáv",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "478039": {
+      "id": 478039,
+      "title": "BJ Cáv / Gádol 5783",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "478445": {
+      "id": 478445,
+      "title": "Neciv Smini / Peszách",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "479010": {
+      "id": 479010,
+      "title": "Chol hamoed szechora",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "479721": {
+      "id": 479721,
+      "title": "וכשם שאנו אומרים שירה",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "480564": {
+      "id": 480564,
+      "title": "נכוה מחופתו",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "480730": {
+      "id": 480730,
+      "title": "Neciv Tázriá-Mecorá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "481445": {
+      "id": 481445,
+      "title": "Chazaka meikara mevarer",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "481701": {
+      "id": 481701,
+      "title": "Hamvasztási végrendelet megtagadása",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "481966": {
+      "id": 481966,
+      "title": "Neciv Achare-Kedosim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "482004": {
+      "id": 482004,
+      "title": "מוכר בעין יפה",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "482005": {
+      "id": 482005,
+      "title": "חמשה קנינים",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "483269": {
+      "id": 483269,
+      "title": "בוכה למשפחותיו -- על עסקי עריות??",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "483274": {
+      "id": 483274,
+      "title": "Permanent issur bamos",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "483277": {
+      "id": 483277,
+      "title": "הדם הוא הנפש",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "483495": {
+      "id": 483495,
+      "title": "Neciv Emor",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "483733": {
+      "id": 483733,
+      "title": "וקדשתו",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "484925": {
+      "id": 484925,
+      "title": "Emor Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "485203": {
+      "id": 485203,
+      "title": "Neciv Behar-Bechukotaj",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "485385": {
+      "id": 485385,
+      "title": "Tora miSzinaj",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "486600": {
+      "id": 486600,
+      "title": "Behár Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "486833": {
+      "id": 486833,
+      "title": "אשר נקבו בשמות",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "486892": {
+      "id": 486892,
+      "title": "Neciv Bemidbar",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "488506": {
+      "id": 488506,
+      "title": "Bemidbár Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "488790": {
+      "id": 488790,
+      "title": "Neciv Nászo",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "489793": {
+      "id": 489793,
+      "title": "Rut megkövezése",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "490873": {
+      "id": 490873,
+      "title": "Sávuot éjszaka Tanach-forrás",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "490881": {
+      "id": 490881,
+      "title": "Sám tehé kvurátchem",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "490910": {
+      "id": 490910,
+      "title": "Sehechejanu",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "491770": {
+      "id": 491770,
+      "title": "Munka",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "492040": {
+      "id": 492040,
+      "title": "Másodnapi Sávuot",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "493126": {
+      "id": 493126,
+      "title": "Neciv Beháálotechá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "493192": {
+      "id": 493192,
+      "title": "Angyalhoz hasonló rabbi",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "493771": {
+      "id": 493771,
+      "title": "Szechorá, hánáá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "494064": {
+      "id": 494064,
+      "title": "פרצה קוראה לגנב – Broken Windows Theory",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "494118": {
+      "id": 494118,
+      "title": "Beháálotechá Péntek este",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "494344": {
+      "id": 494344,
+      "title": "Smá, szem eltakarása",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "494409": {
+      "id": 494409,
+      "title": "Neciv Slách",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "494719": {
+      "id": 494719,
+      "title": "לא נוכל לעלות אל העם",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "495331": {
+      "id": 495331,
+      "title": "כח אדנות",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "495358": {
+      "id": 495358,
+      "title": "Slách Péntek este",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "495791": {
+      "id": 495791,
+      "title": "לא תתגודדו",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "496067": {
+      "id": 496067,
+      "title": "Esővédő a szcháchra",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "496321": {
+      "id": 496321,
+      "title": "Misna Szuka Jegyzetek",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "496785": {
+      "id": 496785,
+      "title": "Kosher haircut",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "496861": {
+      "id": 496861,
+      "title": "Neciv Chukát-Bálák",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "496956": {
+      "id": 496956,
+      "title": "Morid hátál",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "497259": {
+      "id": 497259,
+      "title": "נחש נחשת",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "497744": {
+      "id": 497744,
+      "title": "Neciv Pinchász",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "498038": {
+      "id": 498038,
+      "title": "Növény-szchách-egyensúly",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "498057": {
+      "id": 498057,
+      "title": "Sábáti pledge cedáká / snóder",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "498540": {
+      "id": 498540,
+      "title": "Pinchász Péntek este\n",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "498552": {
+      "id": 498552,
+      "title": "Pne Jehosua drose",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "498784": {
+      "id": 498784,
+      "title": "MG Mátot-Mászé",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "499129": {
+      "id": 499129,
+      "title": "Cedáká és néder",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "499841": {
+      "id": 499841,
+      "title": "Mátot Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "500025": {
+      "id": 500025,
+      "title": "MG Devárim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "500175": {
+      "id": 500175,
+      "title": "Háchzék bemuszár",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "500947": {
+      "id": 500947,
+      "title": "Mikor sírjunk, mikor nevessünk?",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "501042": {
+      "id": 501042,
+      "title": "Devárim Péntek este (kieg.)",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "501048": {
+      "id": 501048,
+      "title": "Devárim Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "501203": {
+      "id": 501203,
+      "title": "Dorsé resumot",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "501226": {
+      "id": 501226,
+      "title": "Gádol veráv verám",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "501270": {
+      "id": 501270,
+      "title": "Hogyan szomorkodjunk?",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "501352": {
+      "id": 501352,
+      "title": "MG Váetchánán",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "501482": {
+      "id": 501482,
+      "title": "Chosech ánán áráfel",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "502096": {
+      "id": 502096,
+      "title": "Tisá BeÁv Máchsává 5783",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "502284": {
+      "id": 502284,
+      "title": "Váetchánán péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "502470": {
+      "id": 502470,
+      "title": "Áz jávdil Mose",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "502471": {
+      "id": 502471,
+      "title": "MG Ékev",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "502475": {
+      "id": 502475,
+      "title": "שמאל דוחה וימין מקרבת",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "502500": {
+      "id": 502500,
+      "title": "בחן בחסד ברחמים",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "503363": {
+      "id": 503363,
+      "title": "Ékev Péntek Este",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "503607": {
+      "id": 503607,
+      "title": "MG Reé",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "504414": {
+      "id": 504414,
+      "title": "Reé Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "504617": {
+      "id": 504617,
+      "title": "MG Softim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "504728": {
+      "id": 504728,
+      "title": "Király micvája",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "504895": {
+      "id": 504895,
+      "title": "MJ Zehirut",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "504899": {
+      "id": 504899,
+      "title": "Támim tihje",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "505062": {
+      "id": 505062,
+      "title": "Párá ádumá – Ohel moéd",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "505463": {
+      "id": 505463,
+      "title": "Softim Péntek este",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "505667": {
+      "id": 505667,
+      "title": "Körömvágás logikája",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "505740": {
+      "id": 505740,
+      "title": "MJ Zerizut",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "505867": {
+      "id": 505867,
+      "title": "MG Ki Técé",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "505986": {
+      "id": 505986,
+      "title": "TK Ki técé",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "506668": {
+      "id": 506668,
+      "title": "Ki técé Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "506998": {
+      "id": 506998,
+      "title": "MG Ki távo",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "508042": {
+      "id": 508042,
+      "title": "Ki távo Péntek este",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "508283": {
+      "id": 508283,
+      "title": "Méál hásámájim Chászdechá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "508736": {
+      "id": 508736,
+      "title": "MG Nicávim-Vájélech",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "508774": {
+      "id": 508774,
+      "title": "MJ Prisut",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "509685": {
+      "id": 509685,
+      "title": "Nicávim-Vájélech Péntek este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "510580": {
+      "id": 510580,
+      "title": "MG Ros Hásáná",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "511392": {
+      "id": 511392,
+      "title": "RH Este",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "511927": {
+      "id": 511927,
+      "title": "MJ Chászidut",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "512901": {
+      "id": 512901,
+      "title": "Háázinu Péntek este",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "513619": {
+      "id": 513619,
+      "title": "Esőmentes szchách (eleve, mert vastag)",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "513793": {
+      "id": 513793,
+      "title": "Timtum hálév / Kásrut",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "515038": {
+      "id": 515038,
+      "title": "Hosiá, háclichá (náánuim)",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "515569": {
+      "id": 515569,
+      "title": "Erev Smini Áceret",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "516100": {
+      "id": 516100,
+      "title": "Neciv Ávot teóriája",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "517557": {
+      "id": 517557,
+      "title": "מבול בארץ ישראל",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "517618": {
+      "id": 517618,
+      "title": "MG Noách",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "519190": {
+      "id": 519190,
+      "title": "Láson vs. száfá / Bábel tornya",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "519417": {
+      "id": 519417,
+      "title": "Yishmael = arabs?\n",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "519494": {
+      "id": 519494,
+      "title": "Királyok háborúja / királyok nevei",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "521902": {
+      "id": 521902,
+      "title": "Jismáél kenyéren és vizen",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "523778": {
+      "id": 523778,
+      "title": "דבר הנשמע / מוטב שיהיו שוגגין",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "525134": {
+      "id": 525134,
+      "title": "Onáát dvárim / ingatlannézés pénz nélkül",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "526474": {
+      "id": 526474,
+      "title": "Vájécé",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "526646": {
+      "id": 526646,
+      "title": "MJ Ánává",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "527021": {
+      "id": 527021,
+      "title": "MJ Kedusá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "527880": {
+      "id": 527880,
+      "title": "NM 1 A négy királyság",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "528566": {
+      "id": 528566,
+      "title": "Tikva Chanuka",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "529140": {
+      "id": 529140,
+      "title": "Olát Reijá siur",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "531653": {
+      "id": 531653,
+      "title": "Hosszú sábeszi séta városban (techum)",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "532551": {
+      "id": 532551,
+      "title": "Tikva Chukot Ákum",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "532754": {
+      "id": 532754,
+      "title": "Benjámin 10 fia",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "533905": {
+      "id": 533905,
+      "title": "Dán, a kígyó",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "534380": {
+      "id": 534380,
+      "title": "Báruch hu uváruch semo",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "536188": {
+      "id": 536188,
+      "title": "Tojást főző sábeszi mértékek",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "537878": {
+      "id": 537878,
+      "title": "Corech ochel nefes – táám?",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "538912": {
+      "id": 538912,
+      "title": "Hálél vs. sevách",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "539106": {
+      "id": 539106,
+      "title": "Éc cháim / tálit",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "541086": {
+      "id": 541086,
+      "title": "Jó feleség, rossz férj – egymásra hatás",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "541089": {
+      "id": 541089,
+      "title": "Fül mint egyensúly",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "541605": {
+      "id": 541605,
+      "title": "Mislé-Talmud",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "542409": {
+      "id": 542409,
+      "title": "Meod meod",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "543613": {
+      "id": 543613,
+      "title": "Amnesztia",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "544044": {
+      "id": 544044,
+      "title": "Kinján reijá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "544562": {
+      "id": 544562,
+      "title": "Menorá – téászé",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "544949": {
+      "id": 544949,
+      "title": "Rosszat a gonoszsága öli meg",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "545969": {
+      "id": 545969,
+      "title": "Vájikchu élechá – párá, semen",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "546838": {
+      "id": 546838,
+      "title": "Chosen és náchás",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "547900": {
+      "id": 547900,
+      "title": "Ki tiszá R Leibowitz",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "550824": {
+      "id": 550824,
+      "title": "Jehemu ráchámechá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "550981": {
+      "id": 550981,
+      "title": "Áchsevé vs. bátlá dááto",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "551404": {
+      "id": 551404,
+      "title": "Áron 4 fia",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "551405": {
+      "id": 551405,
+      "title": "Ess Miskán háédut",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "553247": {
+      "id": 553247,
+      "title": "Ess Meliká vs Sechitá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "555423": {
+      "id": 555423,
+      "title": "Two sifrei Torah on the Bimah\n",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "561697": {
+      "id": 561697,
+      "title": "Gezérá semá jitlená – Peszáchkor?",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "561841": {
+      "id": 561841,
+      "title": "Házasság – gyermekek után",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "568777": {
+      "id": 568777,
+      "title": "Hivatásos Tóraolvasó",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "569860": {
+      "id": 569860,
+      "title": "Tóraadás és Teremtés",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "573238": {
+      "id": 573238,
+      "title": "BJ Nászo Názir",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "577013": {
+      "id": 577013,
+      "title": "Náchás nechoset",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "581641": {
+      "id": 581641,
+      "title": "Minuj dájánim – jesivát Erec",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "583096": {
+      "id": 583096,
+      "title": "Ir, krách, kfár",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "583107": {
+      "id": 583107,
+      "title": "Smirát Micvot Pszukim lista",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "590060": {
+      "id": 590060,
+      "title": "Klál uprát uklál – ál pi szod",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "591206": {
+      "id": 591206,
+      "title": "Ádosém vs Hásém",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "608394": {
+      "id": 608394,
+      "title": "Tfilát sáchár – 4 óra / dél",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "612259": {
+      "id": 612259,
+      "title": "Skie Rábénu Tám",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "613257": {
+      "id": 613257,
+      "title": "Vendégségben gyújtani",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "613474": {
+      "id": 613474,
+      "title": "Sok olaj hidur",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "613694": {
+      "id": 613694,
+      "title": "Chanuka Kumsitz 5785",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "617451": {
+      "id": 617451,
+      "title": "Vajaasz lahem batim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "618102": {
+      "id": 618102,
+      "title": "Páru, vájisrecu",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "618104": {
+      "id": 618104,
+      "title": "Sifrá, Puá elnevezése",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "618106": {
+      "id": 618106,
+      "title": "Mózesi fogadalmak",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "618435": {
+      "id": 618435,
+      "title": "Chén, cheszed, ráchámim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "619129": {
+      "id": 619129,
+      "title": "Mózes nehézbeszédűsége",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "619454": {
+      "id": 619454,
+      "title": "Tíz csapás",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "619745": {
+      "id": 619745,
+      "title": "Megálgelin",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "620606": {
+      "id": 620606,
+      "title": "Kávod málchut",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "621174": {
+      "id": 621174,
+      "title": "Hitálálti",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "621192": {
+      "id": 621192,
+      "title": "TT Bo",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "622135": {
+      "id": 622135,
+      "title": "Tárjág Micvot Hátelujim Bo",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "622136": {
+      "id": 622136,
+      "title": "TT Besálách",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "622185": {
+      "id": 622185,
+      "title": "Tefilin and sichat chulin",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "622186": {
+      "id": 622186,
+      "title": "Tefilin and sichat chulin",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "623109": {
+      "id": 623109,
+      "title": "Berov ám vs jotér mislucho",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "624499": {
+      "id": 624499,
+      "title": "10p 1. – Ánochi",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "624813": {
+      "id": 624813,
+      "title": "Bráchá levátálá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "627059": {
+      "id": 627059,
+      "title": "Árkáot",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "627979": {
+      "id": 627979,
+      "title": "Édut",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "628553": {
+      "id": 628553,
+      "title": "Kétféle trumá (és nem három)",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "629505": {
+      "id": 629505,
+      "title": "Korbán cibur",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "629966": {
+      "id": 629966,
+      "title": "Támid / Rabbi Akiva a fán",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "631178": {
+      "id": 631178,
+      "title": "Mefárszemim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "632143": {
+      "id": 632143,
+      "title": "Sekel – ze-mutatás",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "632982": {
+      "id": 632982,
+      "title": "Áháron és Fáraó",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "633967": {
+      "id": 633967,
+      "title": "Párnész",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "634192": {
+      "id": 634192,
+      "title": "Ácé sitim omdim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "634196": {
+      "id": 634196,
+      "title": "Hávárá leláv jácátá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "635281": {
+      "id": 635281,
+      "title": "Táhor, kodes",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "635289": {
+      "id": 635289,
+      "title": "Táchát hákerászim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "635458": {
+      "id": 635458,
+      "title": "Ima megszakítása",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "635627": {
+      "id": 635627,
+      "title": "Másgiách",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "635699": {
+      "id": 635699,
+      "title": "Miskán máskon",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "636302": {
+      "id": 636302,
+      "title": "A 10 korona napja",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "636584": {
+      "id": 636584,
+      "title": "Begy sózás",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "636677": {
+      "id": 636677,
+      "title": "Nők, kásrut, bediká",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "637652": {
+      "id": 637652,
+      "title": "Bné Áháron Hákohán(im)",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "637678": {
+      "id": 637678,
+      "title": "Hászébá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "638448": {
+      "id": 638448,
+      "title": "Többszörös choméc máámid",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "640786": {
+      "id": 640786,
+      "title": "Háádám bisvuá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "640910": {
+      "id": 640910,
+      "title": "Mimáchárát hásábát",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "642933": {
+      "id": 642933,
+      "title": "Rövidített hagada",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "643057": {
+      "id": 643057,
+      "title": "Kásim gérim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "643156": {
+      "id": 643156,
+      "title": "Áfsi ávál má eesze",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "644968": {
+      "id": 644968,
+      "title": "Ácháré Mot – Nádáv, Ávihu, kodes hákodosim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "645185": {
+      "id": 645185,
+      "title": "Meszirut nefes",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "645852": {
+      "id": 645852,
+      "title": "Nappali omer",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "646994": {
+      "id": 646994,
+      "title": "Iszur klálá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "648032": {
+      "id": 648032,
+      "title": "Kiválasztottság / népek, gojok",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "648407": {
+      "id": 648407,
+      "title": "Lag Baomer Kavod",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "648433": {
+      "id": 648433,
+      "title": "Omer gyásza: zenehallgatás, 33 nap",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "649166": {
+      "id": 649166,
+      "title": "Ákum sesávász chájáv",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "649304": {
+      "id": 649304,
+      "title": "Zenehallgatás tilalma",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "649309": {
+      "id": 649309,
+      "title": "Semitá Ámirá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "649636": {
+      "id": 649636,
+      "title": "Levita városok",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "650189": {
+      "id": 650189,
+      "title": "Onáát kárká – és a pászuk?",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "651028": {
+      "id": 651028,
+      "title": "Bámidbár Rási",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "651350": {
+      "id": 651350,
+      "title": "Leviták feladatai",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "651533": {
+      "id": 651533,
+      "title": "Ám háárec",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "652550": {
+      "id": 652550,
+      "title": "Ki li kol háárec",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "652906": {
+      "id": 652906,
+      "title": "Kohén és báálát tesuvá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "654005": {
+      "id": 654005,
+      "title": "Kovászos mincha",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "655649": {
+      "id": 655649,
+      "title": "Hár hábájit",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "655991": {
+      "id": 655991,
+      "title": "Tóratekercs felállás",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "656675": {
+      "id": 656675,
+      "title": "Borotválkozás",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "657522": {
+      "id": 657522,
+      "title": "Lo jilbás / Minhág hámákom",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "657695": {
+      "id": 657695,
+      "title": "Kivré ávot",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "658120": {
+      "id": 658120,
+      "title": "Kidus reviit",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "658389": {
+      "id": 658389,
+      "title": "Cniut kiskorúaknál",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "658956": {
+      "id": 658956,
+      "title": "Teurgia",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "659438": {
+      "id": 659438,
+      "title": "Korách és a királyság",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "659975": {
+      "id": 659975,
+      "title": "Szof zmán sáchrisz",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "660316": {
+      "id": 660316,
+      "title": "Chukim umispátim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "660499": {
+      "id": 660499,
+      "title": "Chukát – mindenféle források",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "661153": {
+      "id": 661153,
+      "title": "Bálák Válogatás",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "661479": {
+      "id": 661479,
+      "title": "Sém resáim jirkáv – Má tovu",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "661481": {
+      "id": 661481,
+      "title": "Megkezdett ima pillanata",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "662543": {
+      "id": 662543,
+      "title": "Jáhádut neemánut",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "662551": {
+      "id": 662551,
+      "title": "Pázár kásáv",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "662583": {
+      "id": 662583,
+      "title": "Korbán támid",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "663128": {
+      "id": 663128,
+      "title": "Tájolás",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "663803": {
+      "id": 663803,
+      "title": "Moszér / önbíráskodás",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "664110": {
+      "id": 664110,
+      "title": "Bén hámécárim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "664795": {
+      "id": 664795,
+      "title": "Kásrut standards",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "665173": {
+      "id": 665173,
+      "title": "Néder és korbán",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "665333": {
+      "id": 665333,
+      "title": "Mosás és gyász",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "665343": {
+      "id": 665343,
+      "title": "Zécher lámikdás / zécher láchurbán",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "665599": {
+      "id": 665599,
+      "title": "9 nap húsevés",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "667600": {
+      "id": 667600,
+      "title": "Áv 9 Muszár",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "667776": {
+      "id": 667776,
+      "title": "Szchár limud",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "667992": {
+      "id": 667992,
+      "title": "Ablakok a zsinagógán",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "668336": {
+      "id": 668336,
+      "title": "Veáhávtá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "668805": {
+      "id": 668805,
+      "title": "Bencsolásról érdekességek",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "668820": {
+      "id": 668820,
+      "title": "Szimánim vagy mátánot?",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "669111": {
+      "id": 669111,
+      "title": "Tórai bencsolás és áldások",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "669960": {
+      "id": 669960,
+      "title": "Jirát sámájim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "670257": {
+      "id": 670257,
+      "title": "Interkulturális érdeklődés",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "670260": {
+      "id": 670260,
+      "title": "Zimun üdülőben",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "670431": {
+      "id": 670431,
+      "title": "Fejre való tefilin helye",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "671085": {
+      "id": 671085,
+      "title": "Visszatérni Egyiptomba",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "671258": {
+      "id": 671258,
+      "title": "Mácévá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "671597": {
+      "id": 671597,
+      "title": "Zákén mámre",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "671878": {
+      "id": 671878,
+      "title": "Táámé Torá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "672325": {
+      "id": 672325,
+      "title": "Meghallgathatatlan feddés – i efsár lismoá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "672762": {
+      "id": 672762,
+      "title": "Bejomo titén – halachikus halogatás",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "674142": {
+      "id": 674142,
+      "title": "Gáza",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "674514": {
+      "id": 674514,
+      "title": "Senikrét Résit",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "675337": {
+      "id": 675337,
+      "title": "Tefilin Sel Ros",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "675347": {
+      "id": 675347,
+      "title": "Háttal a Tórának",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "676002": {
+      "id": 676002,
+      "title": "Széfer Torá visszavétele",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "676744": {
+      "id": 676744,
+      "title": "Tesuvá Jomá 86",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "677488": {
+      "id": 677488,
+      "title": "Árvut",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "677626": {
+      "id": 677626,
+      "title": "Márá deátrá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "677782": {
+      "id": 677782,
+      "title": "Tesuvá és a közepesek",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "678972": {
+      "id": 678972,
+      "title": "Elektromos ajtó",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "680487": {
+      "id": 680487,
+      "title": "Hekser micva / Szuká",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "680638": {
+      "id": 680638,
+      "title": "Lo titgodedu / Náánuim",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "680648": {
+      "id": 680648,
+      "title": "Szuká dirát kevá / áráj",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "681068": {
+      "id": 681068,
+      "title": "Leesett szchách / visszatenni",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "681080": {
+      "id": 681080,
+      "title": "Luláv cárich eged",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "681122": {
+      "id": 681122,
+      "title": "Hidur micva / etrog",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "683511": {
+      "id": 683511,
+      "title": "Sné gojim-géim / ima előtti evés",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "684216": {
+      "id": 684216,
+      "title": "Noách / Tesuváért imádkozni",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "684467": {
+      "id": 684467,
+      "title": "Lechádés / tefilát nedává / táslumin",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "684825": {
+      "id": 684825,
+      "title": "Újrakérdezés",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "684985": {
+      "id": 684985,
+      "title": "Köszönet az orvosnak",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "685023": {
+      "id": 685023,
+      "title": "Bérelt lakás mezuzája",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "686322": {
+      "id": 686322,
+      "title": "Áldott bor, kenyér",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "686358": {
+      "id": 686358,
+      "title": "Brit bén hábetárim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "687096": {
+      "id": 687096,
+      "title": "Rechilut Ábrahámról?",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "687440": {
+      "id": 687440,
+      "title": "Midát Szedom",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "688110": {
+      "id": 688110,
+      "title": "Bákol",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "688957": {
+      "id": 688957,
+      "title": "Ráv és Smuel vitái",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "690837": {
+      "id": 690837,
+      "title": "Lo jádáti jom moti",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "691110": {
+      "id": 691110,
+      "title": "Bechorá és dásláb",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "691905": {
+      "id": 691905,
+      "title": "Vájécé Kedd / Hásgáchá / Bechirá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "693141": {
+      "id": 693141,
+      "title": "Gazdagodni / Észáv",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "693568": {
+      "id": 693568,
+      "title": "Jákob, félelem és bitáchon",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "694932": {
+      "id": 694932,
+      "title": "Vájésev Hétfő",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "695140": {
+      "id": 695140,
+      "title": "Jákob 22 éves gyásza",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "696570": {
+      "id": 696570,
+      "title": "Szolgálat: ávodá, sérut, simus, kehuná",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "696617": {
+      "id": 696617,
+      "title": "Et chátááj",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "697467": {
+      "id": 697467,
+      "title": "Eglá árufá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "697631": {
+      "id": 697631,
+      "title": "Nuszách bráchá slisit",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "697730": {
+      "id": 697730,
+      "title": "Oj lánu mijom hádin",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "697914": {
+      "id": 697914,
+      "title": "Ki lemichjá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "698085": {
+      "id": 698085,
+      "title": "Jehudá / Bét horáá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "698491": {
+      "id": 698491,
+      "title": "Eskü",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "698772": {
+      "id": 698772,
+      "title": "Bné brit / vájchál Mose",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "698906": {
+      "id": 698906,
+      "title": "Reo pánechá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "699024": {
+      "id": 699024,
+      "title": "Szimchá, Sechiná",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "699518": {
+      "id": 699518,
+      "title": "Dááto meurevet",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "699693": {
+      "id": 699693,
+      "title": "Szchár pesziot",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "700219": {
+      "id": 700219,
+      "title": "Geniza",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "700476": {
+      "id": 700476,
+      "title": "Kijavítani küldtelek",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "701241": {
+      "id": 701241,
+      "title": "Sote",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "701745": {
+      "id": 701745,
+      "title": "Király",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "701965": {
+      "id": 701965,
+      "title": "Ászárá mi jodéá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "701966": {
+      "id": 701966,
+      "title": "Ászárá mi jodéá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "703160": {
+      "id": 703160,
+      "title": "Fáraó áldása Mózeséktől",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "703166": {
+      "id": 703166,
+      "title": "Ulechol bné Jiszráél",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "703544": {
+      "id": 703544,
+      "title": "Hold",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "704997": {
+      "id": 704997,
+      "title": "Méhéchán dántuni",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "705004": {
+      "id": 705004,
+      "title": "Jitámu chátáim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "705306": {
+      "id": 705306,
+      "title": "Tu BiSvát",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "706146": {
+      "id": 706146,
+      "title": "Jitró Giur",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "706405": {
+      "id": 706405,
+      "title": "Ki bádávár áser zádu",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "706714": {
+      "id": 706714,
+      "title": "Lo táchmod",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "706992": {
+      "id": 706992,
+      "title": "Ánochi és Írás (Sábát)",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "707789": {
+      "id": 707789,
+      "title": "Má jáásze vejitásér",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "708053": {
+      "id": 708053,
+      "title": "Bááláv imo",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "708130": {
+      "id": 708130,
+      "title": "Midvár seker tirchák",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "709075": {
+      "id": 709075,
+      "title": "Veászu veászitá",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "709249": {
+      "id": 709249,
+      "title": "Dáát kono",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "709982": {
+      "id": 709982,
+      "title": "Slosá micvot nictávu",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "710156": {
+      "id": 710156,
+      "title": "Mechiját Ámálék",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "710711": {
+      "id": 710711,
+      "title": "Veszámách belibo",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "710797": {
+      "id": 710797,
+      "title": "Szimchá: táir pánáv",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "710892": {
+      "id": 710892,
+      "title": "Mechuszár begádim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "711031": {
+      "id": 711031,
+      "title": "Szánhériv és Ámálék",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "711387": {
+      "id": 711387,
+      "title": "Áni vagy evjon / mátánot",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "712344": {
+      "id": 712344,
+      "title": "Égel / éc hádáát",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "712436": {
+      "id": 712436,
+      "title": "Minjen minjen nélkül",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "712668": {
+      "id": 712668,
+      "title": "Szináj ékszerei",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "713193": {
+      "id": 713193,
+      "title": "Nidá pre-staining",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "713398": {
+      "id": 713398,
+      "title": "Hávárá lechálék jácátá",
+      "importedAt": "2026-03-11T21:24:49.667Z"
+    },
+    "713782": {
+      "id": 713782,
+      "title": "Néder ál dáát rábim",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    },
+    "713930": {
+      "id": 713930,
+      "title": "Az első nyelv",
+      "importedAt": "2026-03-11T21:24:49.666Z"
+    }
+  }
+}
