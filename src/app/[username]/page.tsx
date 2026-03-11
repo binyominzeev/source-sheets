@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getProfile, getUserSheets, SheetSummary } from "@/lib/sefaria";
 import SheetListControls from "@/components/SheetListControls";
+import RefreshButton from "@/components/RefreshButton";
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -55,17 +56,20 @@ export default async function UserSheetsPage({ params }: Props) {
           <h1 className="text-3xl font-bold text-gray-900 mb-1">
             {profileName}
           </h1>
-          <p className="text-gray-500 text-sm">
-            Source sheets on{" "}
-            <a
-              href={`https://www.sefaria.org/profile/${username}?tab=sheets`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              Sefaria
-            </a>
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="text-gray-500 text-sm">
+              Source sheets on{" "}
+              <a
+                href={`https://www.sefaria.org/profile/${username}?tab=sheets`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                Sefaria
+              </a>
+            </p>
+            <RefreshButton username={username} />
+          </div>
         </div>
 
         {error ? (

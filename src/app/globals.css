@@ -47,7 +47,7 @@ body {
 
 /* Sheet content font size (controlled by TOC buttons) */
 .sheet-content {
-  font-size: var(--sheet-font-size);
+  zoom: var(--sheet-font-size);
 }
 
 /* Table of Contents */
