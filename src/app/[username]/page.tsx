@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getProfile, getUserSheets, SheetSummary } from "@/lib/sefaria";
+import SheetListControls from "@/components/SheetListControls";
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -14,60 +15,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function formatDate(dateStr: string): string {
-  try {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  } catch {
-    return dateStr;
-  }
-}
-
-function SheetCard({ sheet }: { sheet: SheetSummary }) {
-  return (
-    <div className="border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-sm transition-all">
-      <Link href={`/sheets/${sheet.id}`} className="block">
-        <h2
-          className="text-lg font-semibold text-blue-700 hover:text-blue-900 mb-1"
-          dangerouslySetInnerHTML={{ __html: sheet.title || "Untitled" }}
-        />
-      </Link>
-      {sheet.summary && (
-        <p
-          className="text-sm text-gray-600 mb-2 line-clamp-2"
-          dangerouslySetInnerHTML={{ __html: sheet.summary }}
-        />
-      )}
-      <div className="flex flex-wrap gap-2 items-center mt-2">
-        {sheet.topics?.filter((topic) => topic.title?.en).slice(0, 3).map((topic) => (
-          <span
-            key={topic.slug}
-            className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full"
-          >
-            {topic.title?.en}
-          </span>
-        ))}
-        {sheet.tags?.slice(0, 3).map((tag) => (
-          <span
-            key={tag}
-            className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-      <div className="flex gap-4 mt-2 text-xs text-gray-400">
-        <span>{formatDate(sheet.updated || sheet.created)}</span>
-        <span>{sheet.views ?? 0} views</span>
-      </div>
-    </div>
-  );
-}
-
 export default async function UserSheetsPage({ params }: Props) {
   const { username } = await params;
 
@@ -79,7 +26,7 @@ export default async function UserSheetsPage({ params }: Props) {
     const profile = await getProfile(username);
     profileName = profile.full_name || username;
     sheets = await getUserSheets(profile.id);
-    // Sort by updated date descending
+    // Default sort: newest first
     sheets.sort(
       (a, b) =>
         new Date(b.updated || b.created).getTime() -
@@ -136,16 +83,7 @@ export default async function UserSheetsPage({ params }: Props) {
             <p className="text-lg">No sheets found</p>
           </div>
         ) : (
-          <>
-            <p className="text-sm text-gray-500 mb-4">
-              {sheets.length} sheet{sheets.length !== 1 ? "s" : ""}
-            </p>
-            <div className="grid gap-3">
-              {sheets.map((sheet) => (
-                <SheetCard key={sheet.id} sheet={sheet} />
-              ))}
-            </div>
-          </>
+          <SheetListControls sheets={sheets} username={username} />
         )}
       </main>
 
