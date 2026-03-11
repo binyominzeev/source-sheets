@@ -1,0 +1,165 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { getProfile, getUserSheets, SheetSummary } from "@/lib/sefaria";
+
+interface Props {
+  params: Promise<{ username: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { username } = await params;
+  return {
+    title: `${username} — Source Sheets`,
+    description: `Source sheets by ${username}`,
+  };
+}
+
+function formatDate(dateStr: string): string {
+  try {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    return dateStr;
+  }
+}
+
+function SheetCard({ sheet }: { sheet: SheetSummary }) {
+  return (
+    <div className="border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-sm transition-all">
+      <Link href={`/sheets/${sheet.id}`} className="block">
+        <h2
+          className="text-lg font-semibold text-blue-700 hover:text-blue-900 mb-1"
+          dangerouslySetInnerHTML={{ __html: sheet.title || "Untitled" }}
+        />
+      </Link>
+      {sheet.summary && (
+        <p
+          className="text-sm text-gray-600 mb-2 line-clamp-2"
+          dangerouslySetInnerHTML={{ __html: sheet.summary }}
+        />
+      )}
+      <div className="flex flex-wrap gap-2 items-center mt-2">
+        {sheet.topics?.slice(0, 3).map((topic) => (
+          <span
+            key={topic.slug}
+            className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full"
+          >
+            {topic.title.en}
+          </span>
+        ))}
+        {sheet.tags?.slice(0, 3).map((tag) => (
+          <span
+            key={tag}
+            className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+      <div className="flex gap-4 mt-2 text-xs text-gray-400">
+        <span>{formatDate(sheet.updated || sheet.created)}</span>
+        <span>{sheet.views ?? 0} views</span>
+      </div>
+    </div>
+  );
+}
+
+export default async function UserSheetsPage({ params }: Props) {
+  const { username } = await params;
+
+  let sheets: SheetSummary[] = [];
+  let profileName = username;
+  let error: string | null = null;
+
+  try {
+    const profile = await getProfile(username);
+    profileName = profile.full_name || username;
+    sheets = await getUserSheets(profile.id);
+    // Sort by updated date descending
+    sheets.sort(
+      (a, b) =>
+        new Date(b.updated || b.created).getTime() -
+        new Date(a.updated || a.created).getTime()
+    );
+  } catch (err) {
+    error = err instanceof Error ? err.message : "Failed to load sheets";
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-10 no-print">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center gap-3">
+          <Link href="/" className="text-gray-400 hover:text-gray-600 text-sm">
+            ← Home
+          </Link>
+          <span className="text-gray-300">/</span>
+          <span className="text-gray-700 font-medium">{profileName}</span>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 py-8">
+        {/* Profile heading */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-1">
+            {profileName}
+          </h1>
+          <p className="text-gray-500 text-sm">
+            Source sheets on{" "}
+            <a
+              href={`https://www.sefaria.org/profile/${username}?tab=sheets`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              Sefaria
+            </a>
+          </p>
+        </div>
+
+        {error ? (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+            <p className="text-red-700 font-medium">Could not load sheets</p>
+            <p className="text-red-500 text-sm mt-1">{error}</p>
+            <p className="text-gray-500 text-sm mt-3">
+              Make sure the username{" "}
+              <code className="bg-gray-100 px-1 rounded">{username}</code> is a
+              valid Sefaria profile slug.
+            </p>
+          </div>
+        ) : sheets.length === 0 ? (
+          <div className="text-center py-12 text-gray-400">
+            <p className="text-lg">No sheets found</p>
+          </div>
+        ) : (
+          <>
+            <p className="text-sm text-gray-500 mb-4">
+              {sheets.length} sheet{sheets.length !== 1 ? "s" : ""}
+            </p>
+            <div className="grid gap-3">
+              {sheets.map((sheet) => (
+                <SheetCard key={sheet.id} sheet={sheet} />
+              ))}
+            </div>
+          </>
+        )}
+      </main>
+
+      <footer className="text-center py-6 text-xs text-gray-300 no-print">
+        Powered by{" "}
+        <a
+          href="https://www.sefaria.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Sefaria API
+        </a>
+      </footer>
+    </div>
+  );
+}
