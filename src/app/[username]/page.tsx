@@ -43,12 +43,12 @@ function SheetCard({ sheet }: { sheet: SheetSummary }) {
         />
       )}
       <div className="flex flex-wrap gap-2 items-center mt-2">
-        {sheet.topics?.slice(0, 3).map((topic) => (
+        {sheet.topics?.filter((topic) => topic.title?.en).slice(0, 3).map((topic) => (
           <span
             key={topic.slug}
             className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full"
           >
-            {topic.title.en}
+            {topic.title?.en}
           </span>
         ))}
         {sheet.tags?.slice(0, 3).map((tag) => (
