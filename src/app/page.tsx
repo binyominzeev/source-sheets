@@ -38,6 +38,15 @@ export default function HomePage() {
         >
           Sefaria API
         </a>
+        {" "}| Part of{" "}
+        <a
+          href="https://www.myshiurim.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          MyShiurim
+        </a>
       </p>
     </main>
   );
