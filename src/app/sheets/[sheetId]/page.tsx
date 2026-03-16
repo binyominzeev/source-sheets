@@ -4,6 +4,7 @@ import { getSheet, stripHtml } from "@/lib/sefaria";
 import TableOfContents, { TocEntry } from "@/components/TableOfContents";
 import SheetSourceItem from "@/components/SheetSourceItem";
 import PrintButton from "@/components/PrintButton";
+import SheetRefreshButton from "@/components/SheetRefreshButton";
 
 interface Props {
   params: Promise<{ sheetId: string }>;
@@ -116,6 +117,7 @@ export default async function SheetPage({ params, searchParams }: Props) {
             >
               View on Sefaria ↗
             </a>
+            <SheetRefreshButton sheetId={sheetId} />
             <PrintButton />
           </div>
         </div>
