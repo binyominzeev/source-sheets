@@ -22,6 +22,7 @@ body {
 .he-text {
   direction: rtl;
   font-family: "Frank Ruhl Libre", "SBL Hebrew", serif;
+  font-size: 2.4em;
 }
 
 /* Bilingual layout */
