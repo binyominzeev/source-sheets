@@ -79,21 +79,27 @@ export default async function SheetPage({ params, searchParams }: Props) {
   // Build TOC entries from sources
   const sourceTocEntries: TocEntry[] = [];
   const outsideTextTocEntries: TocEntry[] = [];
+  const sourceNumberByAnchorId = new Map<string, number>();
   if (sheet) {
+    let sourceNumber = 0;
     sheet.sources.forEach((source, idx) => {
       const anchorId = buildAnchorId(idx, source.ref);
       if (source.title && !source.ref) {
+        sourceNumber += 1;
         sourceTocEntries.push({
           id: anchorId,
           label: stripHtml(source.title).trim() || `Section ${idx + 1}`,
           level: 1,
         });
+        sourceNumberByAnchorId.set(anchorId, sourceNumber);
       } else if (source.ref) {
+        sourceNumber += 1;
         sourceTocEntries.push({
           id: anchorId,
           label: source.ref,
           level: 2,
         });
+        sourceNumberByAnchorId.set(anchorId, sourceNumber);
       }
 
       const outsideTextHtml = getOutsideTextHtml(source);
@@ -213,7 +219,7 @@ export default async function SheetPage({ params, searchParams }: Props) {
                     source={source}
                     lang={lang}
                     anchorId={anchorId}
-                    sourceNumber={idx + 1}
+                    sourceNumber={sourceNumberByAnchorId.get(anchorId)}
                   />
                 );
               })}

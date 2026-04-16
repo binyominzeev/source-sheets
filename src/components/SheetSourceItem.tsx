@@ -4,7 +4,7 @@ interface SheetSourceItemProps {
   source: SheetSource;
   lang: "en" | "he" | "bi";
   anchorId: string;
-  sourceNumber: number;
+  sourceNumber?: number;
 }
 
 function renderText(text: string | string[] | undefined): string {
@@ -21,7 +21,7 @@ export default function SheetSourceItem({
   anchorId,
   sourceNumber,
 }: SheetSourceItemProps) {
-  const sourceNumberLabel = `${sourceNumber}.`;
+  const sourceNumberLabel = sourceNumber !== undefined ? `${sourceNumber}.` : null;
 
   // Section title / header
   if (source.title && !source.ref) {
@@ -109,12 +109,14 @@ export default function SheetSourceItem({
     return (
       <div id={anchorId} className="sheet-source my-4 p-4 bg-amber-50 border-l-4 border-amber-300 rounded-r-lg">
         <div className="flex items-start gap-2">
-          <span
-            aria-hidden="true"
-            className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none"
-          >
-            {sourceNumberLabel}
-          </span>
+          {sourceNumberLabel && (
+            <span
+              aria-hidden="true"
+              className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none"
+            >
+              {sourceNumberLabel}
+            </span>
+          )}
           <div
             className="sheet-source-text min-w-0 text-sm leading-relaxed text-gray-800"
             dangerouslySetInnerHTML={{ __html: source.outsideText }}
@@ -131,12 +133,14 @@ export default function SheetSourceItem({
     return (
       <div id={anchorId} className="sheet-source my-4 p-4 bg-amber-50 border-l-4 border-amber-300 rounded-r-lg">
         <div className="flex items-start gap-2">
-          <span
-            aria-hidden="true"
-            className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none"
-          >
-            {sourceNumberLabel}
-          </span>
+          {sourceNumberLabel && (
+            <span
+              aria-hidden="true"
+              className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none"
+            >
+              {sourceNumberLabel}
+            </span>
+          )}
           <div className="min-w-0 flex-1">
             {lang === "bi" && enText && heText ? (
               <div className="bilingual-source">
@@ -171,12 +175,14 @@ export default function SheetSourceItem({
     return (
       <div id={anchorId} className="sheet-source my-3 px-4 py-2 text-sm text-gray-700 italic border-l-2 border-gray-200">
         <div className="flex items-start gap-2">
-          <span
-            aria-hidden="true"
-            className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none not-italic"
-          >
-            {sourceNumberLabel}
-          </span>
+          {sourceNumberLabel && (
+            <span
+              aria-hidden="true"
+              className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none not-italic"
+            >
+              {sourceNumberLabel}
+            </span>
+          )}
           <div dangerouslySetInnerHTML={{ __html: source.comment }} />
         </div>
       </div>
@@ -192,12 +198,14 @@ export default function SheetSourceItem({
     return (
       <div id={anchorId} className="sheet-source my-4">
         <div className="flex items-start gap-2">
-          <span
-            aria-hidden="true"
-            className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none"
-          >
-            {sourceNumberLabel}
-          </span>
+          {sourceNumberLabel && (
+            <span
+              aria-hidden="true"
+              className="shrink-0 pt-0.5 text-sm font-medium text-gray-400 select-none"
+            >
+              {sourceNumberLabel}
+            </span>
+          )}
           <div className="min-w-0 flex-1">
             {isImage ? (
               // eslint-disable-next-line @next/next/no-img-element
