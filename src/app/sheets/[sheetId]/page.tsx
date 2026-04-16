@@ -31,7 +31,12 @@ function buildAnchorId(index: number, ref?: string): string {
   return `src-${index}`;
 }
 
-function truncateComment(commentHtml: string, maxLength = 90): string {
+const MAX_COMMENT_PREVIEW_LENGTH = 90;
+
+function truncateComment(
+  commentHtml: string,
+  maxLength = MAX_COMMENT_PREVIEW_LENGTH
+): string {
   const ELLIPSIS = "…";
   const plain = stripHtml(commentHtml).replace(/\s+/g, " ").trim();
   if (plain.length <= maxLength) return plain;

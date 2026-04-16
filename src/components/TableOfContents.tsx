@@ -19,6 +19,15 @@ interface TableOfContentsProps {
   commentEntries?: TocEntry[];
 }
 
+function getInitialMode(
+  sourceEntries: TocEntry[],
+  commentEntries: TocEntry[]
+): "sources" | "comments" {
+  if (sourceEntries.length > 0) return "sources";
+  if (commentEntries.length > 0) return "comments";
+  return "sources";
+}
+
 export default function TableOfContents({
   sourceEntries,
   commentEntries = [],
@@ -28,7 +37,7 @@ export default function TableOfContents({
   const [enFontSizeIdx, setEnFontSizeIdx] = useState(DEFAULT_EN_FONT_SIZE_INDEX);
   const [heFontSizeIdx, setHeFontSizeIdx] = useState(DEFAULT_HE_FONT_SIZE_INDEX);
   const [mode, setMode] = useState<"sources" | "comments">(
-    sourceEntries.length > 0 ? "sources" : commentEntries.length > 0 ? "comments" : "sources"
+    getInitialMode(sourceEntries, commentEntries)
   );
 
   function applyFontSizes(enIdx: number, heIdx: number) {

@@ -8,6 +8,7 @@ type SortField = "date" | "name";
 type SortDir = "asc" | "desc";
 
 function getPrimaryCategory(tag: string): string {
+  // Tags may be hierarchical ("Category / Subcategory"). We filter by the first segment.
   return (
     stripHtml(tag)
       .split("/")
