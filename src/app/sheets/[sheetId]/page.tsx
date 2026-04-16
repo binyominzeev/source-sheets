@@ -39,8 +39,9 @@ function flattenSheetText(text: string | string[] | undefined): string {
   return Array.isArray(text) ? text.join(" ") : text;
 }
 
-function truncateOutsideText(outsideTextHtml: string): string {
+function prepareOutsideTextLabel(outsideTextHtml: string): string | null {
   const plain = stripHtml(outsideTextHtml).replace(/\s+/g, " ").trim();
+  if (!plain) return null;
   if (plain.length <= DEFAULT_OUTSIDE_TEXT_PREVIEW_LENGTH) return plain;
   return `${plain.slice(0, DEFAULT_OUTSIDE_TEXT_PREVIEW_LENGTH - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
 }
@@ -51,7 +52,9 @@ function getOutsideTextHtml(source: {
 }): string {
   if (source.outsideText) return source.outsideText;
   if (!source.outsideBiText) return "";
-  return `${flattenSheetText(source.outsideBiText.en)} ${flattenSheetText(source.outsideBiText.he)}`;
+  return [flattenSheetText(source.outsideBiText.en), flattenSheetText(source.outsideBiText.he)]
+    .filter(Boolean)
+    .join(" ");
 }
 
 export default async function SheetPage({ params, searchParams }: Props) {
@@ -94,11 +97,7 @@ export default async function SheetPage({ params, searchParams }: Props) {
       }
 
       const outsideTextHtml = getOutsideTextHtml(source);
-      if (!outsideTextHtml.trim()) {
-        return;
-      }
-
-      const label = truncateOutsideText(outsideTextHtml);
+      const label = prepareOutsideTextLabel(outsideTextHtml);
       if (label) {
         outsideTextTocEntries.push({
           id: anchorId,
