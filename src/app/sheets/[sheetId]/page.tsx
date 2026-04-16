@@ -45,6 +45,15 @@ function truncateOutsideText(outsideTextHtml: string): string {
   return `${plain.slice(0, DEFAULT_OUTSIDE_TEXT_PREVIEW_LENGTH - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
 }
 
+function getOutsideTextHtml(source: {
+  outsideText?: string;
+  outsideBiText?: { en: string | string[]; he: string | string[] };
+}): string {
+  if (source.outsideText) return source.outsideText;
+  if (!source.outsideBiText) return "";
+  return `${flattenSheetText(source.outsideBiText.en)} ${flattenSheetText(source.outsideBiText.he)}`;
+}
+
 export default async function SheetPage({ params, searchParams }: Props) {
   const { sheetId } = await params;
   const { lang: langParam, from } = await searchParams;
@@ -84,11 +93,7 @@ export default async function SheetPage({ params, searchParams }: Props) {
         });
       }
 
-      const outsideTextHtml = source.outsideText
-        ? source.outsideText
-        : source.outsideBiText
-          ? `${flattenSheetText(source.outsideBiText.en)} ${flattenSheetText(source.outsideBiText.he)}`
-          : "";
+      const outsideTextHtml = getOutsideTextHtml(source);
 
       const label = truncateOutsideText(outsideTextHtml);
       if (label) {
