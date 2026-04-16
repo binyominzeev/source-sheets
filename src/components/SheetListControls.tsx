@@ -89,7 +89,7 @@ export default function SheetListControls({ sheets, username }: SheetListControl
         counts.set(category, (counts.get(category) ?? 0) + 1);
       }
     }
-    return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
+    return Array.from(counts.entries()).sort(([a], [b]) => a.localeCompare(b));
   }, [sheets]);
 
   const filtered = useMemo(() => {
