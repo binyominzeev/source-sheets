@@ -53,7 +53,7 @@ export default function TableOfContents({
             : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
         }`}
       >
-        Outside Text
+        Comments
       </button>
     </div>
   );
