@@ -28,7 +28,7 @@ export default function TableOfContents({
   const [enFontSizeIdx, setEnFontSizeIdx] = useState(DEFAULT_EN_FONT_SIZE_INDEX);
   const [heFontSizeIdx, setHeFontSizeIdx] = useState(DEFAULT_HE_FONT_SIZE_INDEX);
   const [mode, setMode] = useState<"sources" | "comments">(
-    sourceEntries.length > 0 ? "sources" : "comments"
+    sourceEntries.length > 0 ? "sources" : commentEntries.length > 0 ? "comments" : "sources"
   );
 
   function applyFontSizes(enIdx: number, heIdx: number) {
