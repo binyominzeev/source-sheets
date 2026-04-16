@@ -7,14 +7,13 @@ import { SheetSummary, stripHtml } from "@/lib/sefaria";
 type SortField = "date" | "name";
 type SortDir = "asc" | "desc";
 
-function getPrimaryCategory(tag: string): string {
-  // Tags may be hierarchical ("Category / Subcategory"). Extract the first non-empty segment.
-  return (
-    stripHtml(tag)
-      .split("/")
-      .map((part) => part.trim())
-      .find((part) => part.length > 0) ?? ""
-  );
+function getCategoryFromTitle(title: string): string {
+  const cleanedTitle = stripHtml(title).trim();
+  const parts = cleanedTitle.split("/");
+
+  if (parts.length !== 2) return "";
+
+  return parts[0].trim();
 }
 
 function formatDate(dateStr: string): string {
@@ -85,13 +84,9 @@ export default function SheetListControls({ sheets, username }: SheetListControl
   const categoryCounts = useMemo(() => {
     const counts = new Map<string, number>();
     for (const sheet of sheets) {
-      const roots = new Set<string>();
-      for (const tag of sheet.tags ?? []) {
-        const root = getPrimaryCategory(tag);
-        if (root) roots.add(root);
-      }
-      for (const root of roots) {
-        counts.set(root, (counts.get(root) ?? 0) + 1);
+      const category = getCategoryFromTitle(sheet.title || "");
+      if (category) {
+        counts.set(category, (counts.get(category) ?? 0) + 1);
       }
     }
     return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
@@ -101,7 +96,7 @@ export default function SheetListControls({ sheets, username }: SheetListControl
     const q = query.trim().toLowerCase();
     const result = sheets.filter((s) => {
       const matchesCategory = selectedCategory
-        ? (s.tags ?? []).some((tag) => getPrimaryCategory(tag) === selectedCategory)
+        ? getCategoryFromTitle(s.title || "") === selectedCategory
         : true;
 
       if (!matchesCategory) return false;
