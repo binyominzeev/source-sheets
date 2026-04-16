@@ -204,14 +204,19 @@ export default async function SheetPage({ params, searchParams }: Props) {
           <div className="flex flex-col lg:flex-row gap-6">
             {/* Main content */}
             <article className="order-2 lg:order-1 flex-1 min-w-0 sheet-content">
-              {sheet.sources.map((source, idx) => (
-                <SheetSourceItem
-                  key={idx}
-                  source={source}
-                  lang={lang}
-                  anchorId={buildAnchorId(idx, source.ref)}
-                />
-              ))}
+              {sheet.sources.map((source, idx) => {
+                const anchorId = buildAnchorId(idx, source.ref);
+
+                return (
+                  <SheetSourceItem
+                    key={idx}
+                    source={source}
+                    lang={lang}
+                    anchorId={anchorId}
+                    sourceNumber={idx + 1}
+                  />
+                );
+              })}
             </article>
 
             {/* Table of Contents – handles both mobile (top) and desktop (right sidebar) layouts */}
