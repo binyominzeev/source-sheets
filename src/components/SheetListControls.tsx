@@ -8,7 +8,12 @@ type SortField = "date" | "name";
 type SortDir = "asc" | "desc";
 
 function getPrimaryCategory(tag: string): string {
-  return stripHtml(tag).split("/")[0]?.trim() ?? "";
+  return (
+    stripHtml(tag)
+      .split("/")
+      .map((part) => part.trim())
+      .find((part) => part.length > 0) ?? ""
+  );
 }
 
 function formatDate(dateStr: string): string {

@@ -32,9 +32,10 @@ function buildAnchorId(index: number, ref?: string): string {
 }
 
 function truncateComment(commentHtml: string, maxLength = 90): string {
+  const ELLIPSIS_LENGTH = 1;
   const plain = stripHtml(commentHtml).replace(/\s+/g, " ").trim();
   if (plain.length <= maxLength) return plain;
-  return `${plain.slice(0, maxLength - 1).trimEnd()}…`;
+  return `${plain.slice(0, maxLength - ELLIPSIS_LENGTH).trimEnd()}…`;
 }
 
 export default async function SheetPage({ params, searchParams }: Props) {
