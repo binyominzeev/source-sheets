@@ -8,7 +8,7 @@ type SortField = "date" | "name";
 type SortDir = "asc" | "desc";
 
 function getPrimaryCategory(tag: string): string {
-  // Tags may be hierarchical ("Category / Subcategory"). We filter by the first segment.
+  // Tags may be hierarchical ("Category / Subcategory"). Extract the first non-empty segment.
   return (
     stripHtml(tag)
       .split("/")
