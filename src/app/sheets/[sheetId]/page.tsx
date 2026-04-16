@@ -35,14 +35,12 @@ const DEFAULT_COMMENT_PREVIEW_LENGTH = 90;
 const ELLIPSIS = "…";
 
 function truncateComment(
-  commentHtml: string,
-  maxLength = DEFAULT_COMMENT_PREVIEW_LENGTH
+  commentHtml: string
 ): string {
+  // Normalize comments to a single-line label for TOC readability.
   const plain = stripHtml(commentHtml).replace(/\s+/g, " ").trim();
-  if (plain.length <= maxLength) return plain;
-  if (maxLength < ELLIPSIS.length) return "";
-  if (maxLength === ELLIPSIS.length) return ELLIPSIS;
-  return `${plain.slice(0, maxLength - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
+  if (plain.length <= DEFAULT_COMMENT_PREVIEW_LENGTH) return plain;
+  return `${plain.slice(0, DEFAULT_COMMENT_PREVIEW_LENGTH - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
 }
 
 export default async function SheetPage({ params, searchParams }: Props) {
