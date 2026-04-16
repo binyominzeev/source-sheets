@@ -94,6 +94,9 @@ export default async function SheetPage({ params, searchParams }: Props) {
       }
 
       const outsideTextHtml = getOutsideTextHtml(source);
+      if (!outsideTextHtml.trim()) {
+        return;
+      }
 
       const label = truncateOutsideText(outsideTextHtml);
       if (label) {
