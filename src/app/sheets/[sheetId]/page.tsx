@@ -31,13 +31,13 @@ function buildAnchorId(index: number, ref?: string): string {
   return `src-${index}`;
 }
 
-const MAX_COMMENT_PREVIEW_LENGTH = 90;
+const DEFAULT_COMMENT_PREVIEW_LENGTH = 90;
+const ELLIPSIS = "…";
 
 function truncateComment(
   commentHtml: string,
-  maxLength = MAX_COMMENT_PREVIEW_LENGTH
+  maxLength = DEFAULT_COMMENT_PREVIEW_LENGTH
 ): string {
-  const ELLIPSIS = "…";
   const plain = stripHtml(commentHtml).replace(/\s+/g, " ").trim();
   if (plain.length <= maxLength) return plain;
   return `${plain.slice(0, maxLength - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
