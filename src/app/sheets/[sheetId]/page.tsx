@@ -31,16 +31,30 @@ function buildAnchorId(index: number, ref?: string): string {
   return `src-${index}`;
 }
 
-const DEFAULT_COMMENT_PREVIEW_LENGTH = 90;
+const DEFAULT_OUTSIDE_TEXT_PREVIEW_LENGTH = 90;
 const ELLIPSIS = "…";
 
-function truncateComment(
-  commentHtml: string
-): string {
-  // Normalize comments to a single-line label for TOC readability.
-  const plain = stripHtml(commentHtml).replace(/\s+/g, " ").trim();
-  if (plain.length <= DEFAULT_COMMENT_PREVIEW_LENGTH) return plain;
-  return `${plain.slice(0, DEFAULT_COMMENT_PREVIEW_LENGTH - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
+function flattenSheetText(text: string | string[] | undefined): string {
+  if (!text) return "";
+  return Array.isArray(text) ? text.join(" ") : text;
+}
+
+function prepareOutsideTextLabel(outsideTextHtml: string): string | null {
+  const plain = stripHtml(outsideTextHtml).replace(/\s+/g, " ").trim();
+  if (!plain) return null;
+  if (plain.length <= DEFAULT_OUTSIDE_TEXT_PREVIEW_LENGTH) return plain;
+  return `${plain.slice(0, DEFAULT_OUTSIDE_TEXT_PREVIEW_LENGTH - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
+}
+
+function getOutsideTextHtml(source: {
+  outsideText?: string;
+  outsideBiText?: { en: string | string[]; he: string | string[] };
+}): string {
+  if (source.outsideText) return source.outsideText;
+  if (!source.outsideBiText) return "";
+  return [flattenSheetText(source.outsideBiText.en), flattenSheetText(source.outsideBiText.he)]
+    .filter(Boolean)
+    .join(" ");
 }
 
 export default async function SheetPage({ params, searchParams }: Props) {
@@ -64,7 +78,7 @@ export default async function SheetPage({ params, searchParams }: Props) {
 
   // Build TOC entries from sources
   const sourceTocEntries: TocEntry[] = [];
-  const commentTocEntries: TocEntry[] = [];
+  const outsideTextTocEntries: TocEntry[] = [];
   if (sheet) {
     sheet.sources.forEach((source, idx) => {
       const anchorId = buildAnchorId(idx, source.ref);
@@ -81,15 +95,15 @@ export default async function SheetPage({ params, searchParams }: Props) {
           level: 2,
         });
       }
-      if (source.comment) {
-        const label = truncateComment(source.comment);
-        if (label) {
-          commentTocEntries.push({
-            id: anchorId,
-            label,
-            level: 2,
-          });
-        }
+
+      const outsideTextHtml = getOutsideTextHtml(source);
+      const label = prepareOutsideTextLabel(outsideTextHtml);
+      if (label) {
+        outsideTextTocEntries.push({
+          id: anchorId,
+          label,
+          level: 2,
+        });
       }
     });
   }
@@ -201,11 +215,11 @@ export default async function SheetPage({ params, searchParams }: Props) {
             </article>
 
             {/* Table of Contents – handles both mobile (top) and desktop (right sidebar) layouts */}
-            {(sourceTocEntries.length > 0 || commentTocEntries.length > 0) && (
+            {(sourceTocEntries.length > 0 || outsideTextTocEntries.length > 0) && (
               <div className="order-1 lg:order-2 no-print">
                 <TableOfContents
                   sourceEntries={sourceTocEntries}
-                  commentEntries={commentTocEntries}
+                  outsideTextEntries={outsideTextTocEntries}
                 />
               </div>
             )}

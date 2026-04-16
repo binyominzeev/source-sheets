@@ -1,12 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import {
-  EN_FONT_SIZES,
-  HE_FONT_SIZES,
-  DEFAULT_EN_FONT_SIZE_INDEX,
-  DEFAULT_HE_FONT_SIZE_INDEX,
-} from "@/config/fontSizes";
 
 export interface TocEntry {
   id: string;
@@ -16,112 +10,24 @@ export interface TocEntry {
 
 interface TableOfContentsProps {
   sourceEntries: TocEntry[];
-  commentEntries?: TocEntry[];
-}
-
-function getInitialMode(
-  sourceEntries: TocEntry[],
-  commentEntries: TocEntry[]
-): "sources" | "comments" {
-  if (sourceEntries.length > 0) return "sources";
-  if (commentEntries.length > 0) return "comments";
-  return "sources";
+  outsideTextEntries?: TocEntry[];
 }
 
 export default function TableOfContents({
   sourceEntries,
-  commentEntries = [],
+  outsideTextEntries = [],
 }: TableOfContentsProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [enFontSizeIdx, setEnFontSizeIdx] = useState(DEFAULT_EN_FONT_SIZE_INDEX);
-  const [heFontSizeIdx, setHeFontSizeIdx] = useState(DEFAULT_HE_FONT_SIZE_INDEX);
-  const [mode, setMode] = useState<"sources" | "comments">(
-    getInitialMode(sourceEntries, commentEntries)
-  );
-
-  function applyFontSizes(enIdx: number, heIdx: number) {
-    const enPercent = EN_FONT_SIZES[enIdx];
-    const hePercent = HE_FONT_SIZES[heIdx];
-    document.documentElement.style.setProperty(
-      "--sheet-font-size-en",
-      `${enPercent}%`
-    );
-    // Hebrew zoom is expressed as a ratio relative to the English zoom so that
-    // the two controls are visually independent (avoids CSS zoom compounding).
-    // Guard against division by zero in case EN_FONT_SIZES is misconfigured.
-    const heRatio = enPercent > 0 ? hePercent / enPercent : 1;
-    document.documentElement.style.setProperty(
-      "--sheet-font-size-he-ratio",
-      String(heRatio)
-    );
-  }
-
-  function changeEnFontSize(e: React.MouseEvent, delta: number) {
-    e.stopPropagation();
-    const next = Math.max(0, Math.min(EN_FONT_SIZES.length - 1, enFontSizeIdx + delta));
-    setEnFontSizeIdx(next);
-    applyFontSizes(next, heFontSizeIdx);
-  }
-
-  function changeHeFontSize(e: React.MouseEvent, delta: number) {
-    e.stopPropagation();
-    const next = Math.max(0, Math.min(HE_FONT_SIZES.length - 1, heFontSizeIdx + delta));
-    setHeFontSizeIdx(next);
-    applyFontSizes(enFontSizeIdx, next);
-  }
+  const [mode, setMode] = useState<"sources" | "outsideText">("sources");
 
   const hasSources = sourceEntries.length > 0;
-  const hasComments = commentEntries.length > 0;
-  const canSwitchModes = hasSources && hasComments;
-  const activeEntries = mode === "comments" ? commentEntries : sourceEntries;
+  const hasOutsideText = outsideTextEntries.length > 0;
+  const activeEntries = mode === "outsideText" ? outsideTextEntries : sourceEntries;
 
-  if (!hasSources && !hasComments) return null;
+  if (!hasSources && !hasOutsideText) return null;
 
-  const fontControls = (
-    <div className="flex items-center gap-1.5">
-      <span className="text-gray-400 text-xs leading-none">En:</span>
-      <button
-        onClick={(e) => changeEnFontSize(e, -1)}
-        disabled={enFontSizeIdx === 0}
-        className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-xs px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
-        aria-label="Decrease English font size"
-        title="Decrease English font size"
-      >
-        A-
-      </button>
-      <button
-        onClick={(e) => changeEnFontSize(e, 1)}
-        disabled={enFontSizeIdx === EN_FONT_SIZES.length - 1}
-        className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-sm px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
-        aria-label="Increase English font size"
-        title="Increase English font size"
-      >
-        A+
-      </button>
-      <span className="text-gray-400 text-xs leading-none">He:</span>
-      <button
-        onClick={(e) => changeHeFontSize(e, -1)}
-        disabled={heFontSizeIdx === 0}
-        className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-xs px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
-        aria-label="Decrease Hebrew font size"
-        title="Decrease Hebrew font size"
-      >
-        א-
-      </button>
-      <button
-        onClick={(e) => changeHeFontSize(e, 1)}
-        disabled={heFontSizeIdx === HE_FONT_SIZES.length - 1}
-        className="text-gray-500 hover:text-gray-800 disabled:opacity-30 text-sm px-1.5 py-0.5 rounded border border-gray-300 bg-white leading-none"
-        aria-label="Increase Hebrew font size"
-        title="Increase Hebrew font size"
-      >
-        א+
-      </button>
-    </div>
-  );
-
-  const modeSwitcher = canSwitchModes && (
+  const modeSwitcher = (
     <div className="flex items-center gap-1">
       <button
         onClick={(e) => {
@@ -139,15 +45,15 @@ export default function TableOfContents({
       <button
         onClick={(e) => {
           e.stopPropagation();
-          setMode("comments");
+          setMode("outsideText");
         }}
         className={`px-2 py-0.5 rounded text-xs ${
-          mode === "comments"
+          mode === "outsideText"
             ? "bg-blue-600 text-white"
             : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
         }`}
       >
-        Comments
+        Outside Text
       </button>
     </div>
   );
@@ -176,9 +82,9 @@ export default function TableOfContents({
     <>
       {/* ── Mobile / tablet layout (hidden on lg+) ────────────────────── */}
       <div className="lg:hidden border border-gray-200 rounded-lg overflow-hidden text-xs">
-        {/* Header row: toggle + font size controls */}
+        {/* Header row: toggle + TOC mode switch */}
         <div
-          className="flex items-center justify-between bg-gray-50 px-3 py-2 cursor-pointer select-none"
+          className="bg-gray-50 px-3 py-2 cursor-pointer select-none"
           onClick={() => setMobileOpen((o) => !o)}
           aria-expanded={mobileOpen}
         >
@@ -188,7 +94,6 @@ export default function TableOfContents({
             </span>
             {modeSwitcher}
           </div>
-          <div className="shrink-0">{fontControls}</div>
         </div>
 
         {mobileOpen && (
@@ -209,7 +114,6 @@ export default function TableOfContents({
             {modeSwitcher}
           </div>
           <div className="flex items-center gap-1">
-            {fontControls}
             <button
               onClick={() => setCollapsed((c) => !c)}
               className="text-gray-400 hover:text-gray-600 text-xs ml-1"
