@@ -13,8 +13,7 @@ function getCategoryFromTitle(title: string): string {
 
   if (parts.length !== 2) return "";
 
-  const category = parts[0]?.trim() ?? "";
-  return category;
+  return parts[0].trim();
 }
 
 function formatDate(dateStr: string): string {
