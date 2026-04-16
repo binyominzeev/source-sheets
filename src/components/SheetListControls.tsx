@@ -7,6 +7,16 @@ import { SheetSummary, stripHtml } from "@/lib/sefaria";
 type SortField = "date" | "name";
 type SortDir = "asc" | "desc";
 
+function getPrimaryCategory(tag: string): string {
+  // Tags may be hierarchical ("Category / Subcategory"). Extract the first non-empty segment.
+  return (
+    stripHtml(tag)
+      .split("/")
+      .map((part) => part.trim())
+      .find((part) => part.length > 0) ?? ""
+  );
+}
+
 function formatDate(dateStr: string): string {
   try {
     const date = new Date(dateStr);
@@ -70,26 +80,48 @@ export default function SheetListControls({ sheets, username }: SheetListControl
   const [query, setQuery] = useState("");
   const [sortField, setSortField] = useState<SortField>("date");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const categoryCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const sheet of sheets) {
+      const roots = new Set<string>();
+      for (const tag of sheet.tags ?? []) {
+        const root = getPrimaryCategory(tag);
+        if (root) roots.add(root);
+      }
+      for (const root of roots) {
+        counts.set(root, (counts.get(root) ?? 0) + 1);
+      }
+    }
+    return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
+  }, [sheets]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const result = q
-      ? sheets.filter((s) => {
-          const title = stripHtml(s.title || "").toLowerCase();
-          const summary = stripHtml(s.summary || "").toLowerCase();
-          const tags = (s.tags ?? []).join(" ").toLowerCase();
-          const topics = (s.topics ?? [])
-            .map((t) => t.title?.en ?? "")
-            .join(" ")
-            .toLowerCase();
-          return (
-            title.includes(q) ||
-            summary.includes(q) ||
-            tags.includes(q) ||
-            topics.includes(q)
-          );
-        })
-      : [...sheets];
+    const result = sheets.filter((s) => {
+      const matchesCategory = selectedCategory
+        ? (s.tags ?? []).some((tag) => getPrimaryCategory(tag) === selectedCategory)
+        : true;
+
+      if (!matchesCategory) return false;
+
+      if (!q) return true;
+
+      const title = stripHtml(s.title || "").toLowerCase();
+      const summary = stripHtml(s.summary || "").toLowerCase();
+      const tags = (s.tags ?? []).join(" ").toLowerCase();
+      const topics = (s.topics ?? [])
+        .map((t) => t.title?.en ?? "")
+        .join(" ")
+        .toLowerCase();
+      return (
+        title.includes(q) ||
+        summary.includes(q) ||
+        tags.includes(q) ||
+        topics.includes(q)
+      );
+    });
 
     result.sort((a, b) => {
       let cmp = 0;
@@ -107,7 +139,7 @@ export default function SheetListControls({ sheets, username }: SheetListControl
     });
 
     return result;
-  }, [sheets, query, sortField, sortDir]);
+  }, [sheets, query, sortField, sortDir, selectedCategory]);
 
   function toggleDir() {
     setSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -157,10 +189,48 @@ export default function SheetListControls({ sheets, username }: SheetListControl
         </div>
       </div>
 
+      {categoryCounts.length > 0 && (
+        <div className="mb-4">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <p className="text-xs text-gray-500">Filter by category</p>
+            {selectedCategory && (
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className="text-xs text-blue-600 hover:underline"
+              >
+                Clear filter
+              </button>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {categoryCounts.map(([category, count]) => (
+              <button
+                key={category}
+                onClick={() =>
+                  setSelectedCategory((current) =>
+                    current === category ? null : category
+                  )
+                }
+                className={`text-xs px-2.5 py-1 rounded-full border ${
+                  selectedCategory === category
+                    ? "bg-blue-600 border-blue-600 text-white"
+                    : "bg-white border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-700"
+                }`}
+                aria-pressed={selectedCategory === category}
+              >
+                {category}
+                <span className="ml-1 opacity-70">({count})</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Results */}
       <p className="text-sm text-gray-500 mb-3">
         {filtered.length} sheet{filtered.length !== 1 ? "s" : ""}
         {query && ` matching "${query}"`}
+        {selectedCategory && ` in ${selectedCategory}`}
       </p>
 
       {filtered.length === 0 ? (
@@ -172,6 +242,14 @@ export default function SheetListControls({ sheets, username }: SheetListControl
               className="mt-2 text-sm text-blue-500 hover:underline"
             >
               Clear search
+            </button>
+          )}
+          {selectedCategory && (
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className="mt-2 ml-3 text-sm text-blue-500 hover:underline"
+            >
+              Clear category filter
             </button>
           )}
         </div>
