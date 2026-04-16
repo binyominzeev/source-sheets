@@ -73,8 +73,14 @@ export default function TableOfContents({
 
   const hasSources = sourceEntries.length > 0;
   const hasComments = commentEntries.length > 0;
-  const activeEntries = mode === "comments" ? commentEntries : sourceEntries;
   const canSwitchModes = hasSources && hasComments;
+  const effectiveMode =
+    mode === "comments" && !hasComments
+      ? "sources"
+      : mode === "sources" && !hasSources
+        ? "comments"
+        : mode;
+  const activeEntries = effectiveMode === "comments" ? commentEntries : sourceEntries;
 
   if (!hasSources && !hasComments) return null;
 
@@ -129,7 +135,7 @@ export default function TableOfContents({
           setMode("sources");
         }}
         className={`px-2 py-0.5 rounded text-xs ${
-          mode === "sources"
+          effectiveMode === "sources"
             ? "bg-blue-600 text-white"
             : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
         }`}
@@ -142,7 +148,7 @@ export default function TableOfContents({
           setMode("comments");
         }}
         className={`px-2 py-0.5 rounded text-xs ${
-          mode === "comments"
+          effectiveMode === "comments"
             ? "bg-blue-600 text-white"
             : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
         }`}

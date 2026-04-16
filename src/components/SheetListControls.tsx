@@ -85,11 +85,11 @@ export default function SheetListControls({ sheets, username }: SheetListControl
   const categoryCounts = useMemo(() => {
     const counts = new Map<string, number>();
     for (const sheet of sheets) {
-      const roots = new Set(
-        (sheet.tags ?? [])
-          .map(getPrimaryCategory)
-          .filter((category) => category.length > 0)
-      );
+      const roots = new Set<string>();
+      for (const tag of sheet.tags ?? []) {
+        const root = getPrimaryCategory(tag);
+        if (root) roots.add(root);
+      }
       for (const root of roots) {
         counts.set(root, (counts.get(root) ?? 0) + 1);
       }

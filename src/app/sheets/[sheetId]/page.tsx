@@ -40,7 +40,7 @@ function truncateComment(
 ): string {
   const plain = stripHtml(commentHtml).replace(/\s+/g, " ").trim();
   if (plain.length <= maxLength) return plain;
-  if (maxLength <= ELLIPSIS.length) return ELLIPSIS.slice(0, maxLength);
+  if (maxLength <= ELLIPSIS.length) return "";
   return `${plain.slice(0, maxLength - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
 }
 
