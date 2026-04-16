@@ -15,14 +15,21 @@ export interface TocEntry {
 }
 
 interface TableOfContentsProps {
-  entries: TocEntry[];
+  sourceEntries: TocEntry[];
+  commentEntries?: TocEntry[];
 }
 
-export default function TableOfContents({ entries }: TableOfContentsProps) {
+export default function TableOfContents({
+  sourceEntries,
+  commentEntries = [],
+}: TableOfContentsProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [enFontSizeIdx, setEnFontSizeIdx] = useState(DEFAULT_EN_FONT_SIZE_INDEX);
   const [heFontSizeIdx, setHeFontSizeIdx] = useState(DEFAULT_HE_FONT_SIZE_INDEX);
+  const [mode, setMode] = useState<"sources" | "comments">(
+    sourceEntries.length > 0 ? "sources" : "comments"
+  );
 
   function applyFontSizes(enIdx: number, heIdx: number) {
     const enPercent = EN_FONT_SIZES[enIdx];
@@ -55,7 +62,12 @@ export default function TableOfContents({ entries }: TableOfContentsProps) {
     applyFontSizes(enFontSizeIdx, next);
   }
 
-  if (entries.length === 0) return null;
+  const hasSources = sourceEntries.length > 0;
+  const hasComments = commentEntries.length > 0;
+  const activeEntries = mode === "comments" ? commentEntries : sourceEntries;
+  const canSwitchModes = hasSources && hasComments;
+
+  if (!hasSources && !hasComments) return null;
 
   const fontControls = (
     <div className="flex items-center gap-1.5">
@@ -100,9 +112,40 @@ export default function TableOfContents({ entries }: TableOfContentsProps) {
     </div>
   );
 
+  const modeSwitcher = canSwitchModes && (
+    <div className="flex items-center gap-1">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          setMode("sources");
+        }}
+        className={`px-2 py-0.5 rounded text-xs ${
+          mode === "sources"
+            ? "bg-blue-600 text-white"
+            : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
+        }`}
+      >
+        Sources
+      </button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          setMode("comments");
+        }}
+        className={`px-2 py-0.5 rounded text-xs ${
+          mode === "comments"
+            ? "bg-blue-600 text-white"
+            : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
+        }`}
+      >
+        Comments
+      </button>
+    </div>
+  );
+
   const entryList = (
     <ol className="list-none">
-      {entries.map((entry, idx) => (
+      {activeEntries.map((entry, idx) => (
         <li key={entry.id}>
           <a
             href={`#${entry.id}`}
@@ -130,10 +173,13 @@ export default function TableOfContents({ entries }: TableOfContentsProps) {
           onClick={() => setMobileOpen((o) => !o)}
           aria-expanded={mobileOpen}
         >
-          <span className="font-semibold text-gray-700">
-            {mobileOpen ? "▾" : "▸"} Contents ({entries.length} items)
-          </span>
-          {fontControls}
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-gray-700">
+              {mobileOpen ? "▾" : "▸"} Contents ({activeEntries.length} items)
+            </span>
+            {modeSwitcher}
+          </div>
+          <div className="shrink-0">{fontControls}</div>
         </div>
 
         {mobileOpen && (
@@ -149,7 +195,10 @@ export default function TableOfContents({ entries }: TableOfContentsProps) {
         aria-label="Table of Contents"
       >
         <div className="flex items-center justify-between px-2 py-1.5 border-b border-gray-200 bg-gray-100 rounded-t">
-          <span className="font-semibold text-gray-700 text-xs">Contents</span>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-gray-700 text-xs">Contents</span>
+            {modeSwitcher}
+          </div>
           <div className="flex items-center gap-1">
             {fontControls}
             <button

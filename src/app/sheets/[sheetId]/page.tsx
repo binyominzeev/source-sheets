@@ -31,6 +31,12 @@ function buildAnchorId(index: number, ref?: string): string {
   return `src-${index}`;
 }
 
+function truncateComment(commentHtml: string, maxLength = 90): string {
+  const plain = stripHtml(commentHtml).replace(/\s+/g, " ").trim();
+  if (plain.length <= maxLength) return plain;
+  return `${plain.slice(0, maxLength - 1).trimEnd()}…`;
+}
+
 export default async function SheetPage({ params, searchParams }: Props) {
   const { sheetId } = await params;
   const { lang: langParam, from } = await searchParams;
@@ -51,22 +57,33 @@ export default async function SheetPage({ params, searchParams }: Props) {
   }
 
   // Build TOC entries from sources
-  const tocEntries: TocEntry[] = [];
+  const sourceTocEntries: TocEntry[] = [];
+  const commentTocEntries: TocEntry[] = [];
   if (sheet) {
     sheet.sources.forEach((source, idx) => {
       const anchorId = buildAnchorId(idx, source.ref);
       if (source.title && !source.ref) {
-        tocEntries.push({
+        sourceTocEntries.push({
           id: anchorId,
           label: stripHtml(source.title).trim() || `Section ${idx + 1}`,
           level: 1,
         });
       } else if (source.ref) {
-        tocEntries.push({
+        sourceTocEntries.push({
           id: anchorId,
           label: source.ref,
           level: 2,
         });
+      }
+      if (source.comment) {
+        const label = truncateComment(source.comment);
+        if (label) {
+          commentTocEntries.push({
+            id: anchorId,
+            label,
+            level: 2,
+          });
+        }
       }
     });
   }
@@ -178,9 +195,12 @@ export default async function SheetPage({ params, searchParams }: Props) {
             </article>
 
             {/* Table of Contents – handles both mobile (top) and desktop (right sidebar) layouts */}
-            {tocEntries.length > 0 && (
+            {(sourceTocEntries.length > 0 || commentTocEntries.length > 0) && (
               <div className="order-1 lg:order-2 no-print">
-                <TableOfContents entries={tocEntries} />
+                <TableOfContents
+                  sourceEntries={sourceTocEntries}
+                  commentEntries={commentTocEntries}
+                />
               </div>
             )}
           </div>
