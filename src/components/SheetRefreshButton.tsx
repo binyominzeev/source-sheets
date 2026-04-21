@@ -6,15 +6,16 @@ import { revalidateSheet } from "@/lib/actions";
 
 interface SheetRefreshButtonProps {
   sheetId: string;
+  from?: string;
 }
 
-export default function SheetRefreshButton({ sheetId }: SheetRefreshButtonProps) {
+export default function SheetRefreshButton({ sheetId, from }: SheetRefreshButtonProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   function handleRefresh() {
     startTransition(async () => {
-      await revalidateSheet(sheetId);
+      await revalidateSheet(sheetId, from);
       router.refresh();
     });
   }
