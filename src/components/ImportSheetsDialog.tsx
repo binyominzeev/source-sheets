@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 interface ImportResult {
   imported: Array<{ id: number; title: string }>;
@@ -17,6 +18,7 @@ export default function ImportSheetsDialog({
   username,
   onSuccess,
 }: ImportSheetsDialogProps) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -63,8 +65,10 @@ export default function ImportSheetsDialog({
         return;
       }
       setResult(data);
-      if (data.imported.length > 0 && onSuccess) {
-        onSuccess();
+      const hasNewlyImportedSheets = data.imported.length > 0;
+      if (hasNewlyImportedSheets) {
+        if (onSuccess) onSuccess();
+        router.refresh();
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Network error");

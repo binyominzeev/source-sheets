@@ -160,7 +160,7 @@ export default async function SheetPage({ params, searchParams }: Props) {
             >
               View on Sefaria ↗
             </a>
-            <SheetRefreshButton sheetId={sheetId} />
+            <SheetRefreshButton sheetId={sheetId} from={from} />
             <PrintButton />
           </div>
         </div>

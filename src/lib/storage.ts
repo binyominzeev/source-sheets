@@ -69,3 +69,24 @@ export function addImportedSheets(
   writeData(data);
   return { added, duplicates };
 }
+
+/** Update fields for an already-imported sheet for a username. */
+export function updateImportedSheet(
+  username: string,
+  sheetId: number,
+  updates: Partial<Pick<ImportedSheet, "title" | "created" | "updated">>
+): boolean {
+  if (Object.keys(updates).length === 0) return false;
+
+  const data = readData();
+  const key = String(sheetId);
+  const existing = data[username]?.[key];
+  if (!existing) return false;
+
+  data[username][key] = {
+    ...existing,
+    ...updates,
+  };
+  writeData(data);
+  return true;
+}
