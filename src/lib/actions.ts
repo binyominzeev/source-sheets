@@ -19,8 +19,8 @@ export async function revalidateSheet(sheetId: string, username?: string): Promi
       created: sheet.created,
       updated: sheet.updated,
     });
-  } catch {
-    // Keep the refresh action resilient even if sheet fetch/storage update fails.
+  } catch (error) {
+    console.error("Failed to sync imported sheet metadata after refresh:", error);
   }
   revalidatePath(`/${username}`);
 }

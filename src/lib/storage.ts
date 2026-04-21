@@ -76,6 +76,14 @@ export function updateImportedSheet(
   sheetId: number,
   updates: Partial<Pick<ImportedSheet, "title" | "created" | "updated">>
 ): boolean {
+  if (
+    updates.title === undefined &&
+    updates.created === undefined &&
+    updates.updated === undefined
+  ) {
+    return false;
+  }
+
   const data = readData();
   const key = String(sheetId);
   const existing = data[username]?.[key];
