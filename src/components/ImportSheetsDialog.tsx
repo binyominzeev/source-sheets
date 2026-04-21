@@ -65,8 +65,8 @@ export default function ImportSheetsDialog({
         return;
       }
       setResult(data);
-      const hasImportedSheets = data.imported.length > 0;
-      if (hasImportedSheets) {
+      const hasNewlyImportedSheets = data.imported.length > 0;
+      if (hasNewlyImportedSheets) {
         if (onSuccess) onSuccess();
         router.refresh();
       }

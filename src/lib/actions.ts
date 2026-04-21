@@ -21,7 +21,7 @@ export async function revalidateSheet(sheetId: string, username?: string): Promi
     });
     if (!updated) {
       console.warn(
-        `Imported-sheet metadata sync skipped; sheet ${sheet.id} not found for username "${username}".`
+        `Imported-sheet metadata sync skipped for sheet ${sheet.id} and username "${username}".`
       );
     }
   } catch (error) {
