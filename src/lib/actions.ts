@@ -14,11 +14,16 @@ export async function revalidateSheet(sheetId: string, username?: string): Promi
 
   try {
     const sheet = await getSheet(sheetId);
-    updateImportedSheet(username, sheet.id, {
+    const updated = updateImportedSheet(username, sheet.id, {
       title: stripHtml(sheet.title),
       created: sheet.created,
       updated: sheet.updated,
     });
+    if (!updated) {
+      console.warn(
+        `Imported-sheet metadata sync skipped; sheet ${sheet.id} not found for username "${username}".`
+      );
+    }
   } catch (error) {
     console.error("Failed to sync imported sheet metadata after refresh:", error);
   }
