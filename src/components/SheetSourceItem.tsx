@@ -1,4 +1,4 @@
-import { SheetSource } from "@/lib/sefaria";
+import { SheetSource, autoLinkUrls } from "@/lib/sefaria";
 
 interface SheetSourceItemProps {
   source: SheetSource;
@@ -106,6 +106,7 @@ export default function SheetSourceItem({
 
   // Outside text (no ref)
   if (source.outsideText) {
+    const html = autoLinkUrls(source.outsideText);
     return (
       <div id={anchorId} className="sheet-source my-4 p-4 bg-amber-50 border-l-4 border-amber-300 rounded-r-lg">
         <div className="flex items-start gap-2">
@@ -119,7 +120,7 @@ export default function SheetSourceItem({
           )}
           <div
             className="sheet-source-text min-w-0 text-sm leading-relaxed text-gray-800"
-            dangerouslySetInnerHTML={{ __html: source.outsideText }}
+            dangerouslySetInnerHTML={{ __html: html }}
           />
         </div>
       </div>
@@ -128,8 +129,8 @@ export default function SheetSourceItem({
 
   // Outside bilingual text
   if (source.outsideBiText) {
-    const enText = renderText(source.outsideBiText.en);
-    const heText = renderText(source.outsideBiText.he);
+    const enText = autoLinkUrls(renderText(source.outsideBiText.en));
+    const heText = autoLinkUrls(renderText(source.outsideBiText.he));
     return (
       <div id={anchorId} className="sheet-source my-4 p-4 bg-amber-50 border-l-4 border-amber-300 rounded-r-lg">
         <div className="flex items-start gap-2">
@@ -172,6 +173,7 @@ export default function SheetSourceItem({
 
   // Comment
   if (source.comment) {
+    const html = autoLinkUrls(source.comment);
     return (
       <div id={anchorId} className="sheet-source my-3 px-4 py-2 text-sm text-gray-700 italic border-l-2 border-gray-200">
         <div className="flex items-start gap-2">
@@ -183,7 +185,7 @@ export default function SheetSourceItem({
               {sourceNumberLabel}
             </span>
           )}
-          <div dangerouslySetInnerHTML={{ __html: source.comment }} />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       </div>
     );

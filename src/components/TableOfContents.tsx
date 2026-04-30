@@ -6,6 +6,8 @@ export interface TocEntry {
   id: string;
   label: string;
   level: number; // 1 = section title, 2 = source ref
+  /** When set, the TOC entry links to this external URL instead of the page anchor. */
+  href?: string;
 }
 
 interface TableOfContentsProps {
@@ -63,7 +65,10 @@ export default function TableOfContents({
       {activeEntries.map((entry, idx) => (
         <li key={entry.id}>
           <a
-            href={`#${entry.id}`}
+            href={entry.href ?? `#${entry.id}`}
+            {...(entry.href
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
             className={
               entry.level === 1
                 ? "block px-2 py-0.5 text-blue-700 hover:text-blue-900 hover:bg-blue-50 font-medium"

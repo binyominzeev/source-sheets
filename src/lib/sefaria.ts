@@ -91,6 +91,23 @@ export function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "");
 }
 
+/**
+ * Convert bare https:// URLs in an HTML string into clickable <a> links.
+ * URLs that are already inside an HTML attribute (e.g. href="...") are left untouched.
+ * Trailing punctuation that commonly ends sentences is stripped from matched URLs.
+ */
+export function autoLinkUrls(html: string): string {
+  // Negative lookbehind ensures we don't match URLs already in an attribute value.
+  // Trailing sentence punctuation is excluded from the URL.
+  return html.replace(
+    /(?<!['"=])(https:\/\/[^\s<>"']+)/g,
+    (_, url: string) => {
+      const trimmed = url.replace(/[.,!?;:)]+$/, "");
+      return `<a href="${trimmed}" target="_blank" rel="noopener noreferrer">${trimmed}</a>`;
+    }
+  );
+}
+
 /** Extract a plain-text display ref from a source */
 export function getSourceRef(source: SheetSource): string | null {
   if (source.ref) return source.ref;
