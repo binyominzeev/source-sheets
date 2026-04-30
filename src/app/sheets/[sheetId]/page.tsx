@@ -46,6 +46,14 @@ function prepareOutsideTextLabel(outsideTextHtml: string): string | null {
   return `${plain.slice(0, DEFAULT_OUTSIDE_TEXT_PREVIEW_LENGTH - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
 }
 
+/** Returns true when the plain text of a comment is a bare https:// URL with no spaces. */
+function extractPlainUrl(outsideTextHtml: string): string | undefined {
+  const plain = stripHtml(outsideTextHtml).replace(/\s+/g, " ").trim();
+  // Use the same character class as autoLinkUrls and strip trailing punctuation
+  const match = plain.match(/^(https:\/\/[^\s<>"']+?)[.,!?;:)]*$/);
+  return match ? match[1] : undefined;
+}
+
 function getOutsideTextHtml(source: {
   outsideText?: string;
   outsideBiText?: { en: string | string[]; he: string | string[] };
@@ -105,10 +113,12 @@ export default async function SheetPage({ params, searchParams }: Props) {
       const outsideTextHtml = getOutsideTextHtml(source);
       const label = prepareOutsideTextLabel(outsideTextHtml);
       if (label) {
+        const externalHref = extractPlainUrl(outsideTextHtml);
         outsideTextTocEntries.push({
           id: anchorId,
           label,
           level: 2,
+          href: externalHref,
         });
       }
     });
