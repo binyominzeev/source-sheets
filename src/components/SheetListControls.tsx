@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SheetSummary, stripHtml } from "@/lib/sefaria";
 
 type SortField = "date" | "name";
@@ -14,6 +15,15 @@ function getCategoryFromTitle(title: string): string {
   if (parts.length !== 2) return "";
 
   return parts[0].trim();
+}
+
+function slugifyCategory(category: string): string {
+  return category
+    .trim()
+    .toLowerCase()
+    .replace(/['"]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 function formatDate(dateStr: string): string {
@@ -73,15 +83,22 @@ function SheetCard({ sheet, username }: { sheet: SheetSummary; username: string 
 interface SheetListControlsProps {
   sheets: SheetSummary[];
   username: string;
+  initialCategorySlug?: string;
 }
 
-export default function SheetListControls({ sheets, username }: SheetListControlsProps) {
+export default function SheetListControls({
+  sheets,
+  username,
+  initialCategorySlug,
+}: SheetListControlsProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [sortField, setSortField] = useState<SortField>("date");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const categoryCounts = useMemo(() => {
+  const categoryEntries = useMemo(() => {
     const counts = new Map<string, number>();
     for (const sheet of sheets) {
       const category = getCategoryFromTitle(sheet.title || "");
@@ -89,8 +106,24 @@ export default function SheetListControls({ sheets, username }: SheetListControl
         counts.set(category, (counts.get(category) ?? 0) + 1);
       }
     }
-    return Array.from(counts.entries()).sort(([a], [b]) => a.localeCompare(b));
+
+    return Array.from(counts.entries())
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([category, count]) => ({
+        category,
+        count,
+        slug: slugifyCategory(category),
+      }));
   }, [sheets]);
+
+  const categoryBySlug = useMemo(() => {
+    return new Map(categoryEntries.map((entry) => [entry.slug, entry.category]));
+  }, [categoryEntries]);
+
+  const selectedCategory = useMemo(() => {
+    const categorySlug = searchParams.get("category") ?? initialCategorySlug ?? null;
+    return categorySlug ? categoryBySlug.get(categorySlug) ?? null : null;
+  }, [categoryBySlug, initialCategorySlug, searchParams]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -140,6 +173,20 @@ export default function SheetListControls({ sheets, username }: SheetListControl
     setSortDir((d) => (d === "asc" ? "desc" : "asc"));
   }
 
+  function updateCategoryFilter(category: string | null) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (category) {
+      params.set("category", slugifyCategory(category));
+    } else {
+      params.delete("category");
+    }
+
+    const queryString = params.toString();
+    router.replace(queryString ? `${pathname}?${queryString}` : pathname, {
+      scroll: false,
+    });
+  }
+
   return (
     <>
       {/* Controls */}
@@ -184,13 +231,13 @@ export default function SheetListControls({ sheets, username }: SheetListControl
         </div>
       </div>
 
-      {categoryCounts.length > 0 && (
+      {categoryEntries.length > 0 && (
         <div className="mb-4">
           <div className="flex items-center justify-between gap-2 mb-2">
             <p className="text-xs text-gray-500">Filter by category</p>
             {selectedCategory && (
               <button
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => updateCategoryFilter(null)}
                 className="text-xs text-blue-600 hover:underline"
               >
                 Clear filter
@@ -198,13 +245,11 @@ export default function SheetListControls({ sheets, username }: SheetListControl
             )}
           </div>
           <div className="flex flex-wrap gap-2">
-            {categoryCounts.map(([category, count]) => (
+            {categoryEntries.map(({ category, count, slug }) => (
               <button
                 key={category}
                 onClick={() =>
-                  setSelectedCategory((current) =>
-                    current === category ? null : category
-                  )
+                  updateCategoryFilter(selectedCategory === category ? null : category)
                 }
                 className={`text-xs px-2.5 py-1 rounded-full border ${
                   selectedCategory === category
@@ -212,6 +257,7 @@ export default function SheetListControls({ sheets, username }: SheetListControl
                     : "bg-white border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-700"
                 }`}
                 aria-pressed={selectedCategory === category}
+                data-category-slug={slug}
               >
                 {category}
                 <span className="ml-1 opacity-70">({count})</span>
@@ -241,7 +287,7 @@ export default function SheetListControls({ sheets, username }: SheetListControl
           )}
           {selectedCategory && (
             <button
-              onClick={() => setSelectedCategory(null)}
+              onClick={() => updateCategoryFilter(null)}
               className="mt-2 ml-3 text-sm text-blue-500 hover:underline"
             >
               Clear category filter

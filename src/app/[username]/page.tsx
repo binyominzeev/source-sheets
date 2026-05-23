@@ -8,6 +8,7 @@ import ImportSheetsDialog from "@/components/ImportSheetsDialog";
 
 interface Props {
   params: Promise<{ username: string }>;
+  searchParams: Promise<{ category?: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -18,8 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function UserSheetsPage({ params }: Props) {
+export default async function UserSheetsPage({ params, searchParams }: Props) {
   const { username } = await params;
+  const { category } = await searchParams;
 
   let sheets: SheetSummary[] = [];
   let profileName = username;
@@ -107,7 +109,11 @@ export default async function UserSheetsPage({ params }: Props) {
             <p className="text-lg">No sheets found</p>
           </div>
         ) : (
-          <SheetListControls sheets={sheets} username={username} />
+          <SheetListControls
+            sheets={sheets}
+            username={username}
+            initialCategorySlug={category}
+          />
         )}
       </main>
 
