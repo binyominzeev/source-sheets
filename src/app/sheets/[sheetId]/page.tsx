@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { getSheet, stripHtml } from "@/lib/sefaria";
+import { augmentTorahTemimahSources, getSheet, stripHtml } from "@/lib/sefaria";
 import TableOfContents, { TocEntry } from "@/components/TableOfContents";
 import SheetSourceItem from "@/components/SheetSourceItem";
 import PrintButton from "@/components/PrintButton";
@@ -79,7 +79,11 @@ export default async function SheetPage({ params, searchParams }: Props) {
   let error: string | null = null;
 
   try {
-    sheet = await getSheet(sheetId);
+    const loadedSheet = await getSheet(sheetId);
+    sheet = {
+      ...loadedSheet,
+      sources: await augmentTorahTemimahSources(loadedSheet.sources),
+    };
   } catch (err) {
     error = err instanceof Error ? err.message : "Failed to load sheet";
   }

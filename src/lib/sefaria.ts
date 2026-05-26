@@ -52,6 +52,11 @@ export interface Sheet {
   ownerImageUrl?: string;
 }
 
+interface SefariaTextVersion {
+  language?: string;
+  text?: string | string[];
+}
+
 export async function getProfile(username: string): Promise<SefariaProfile> {
   const res = await fetch(`${SEFARIA_API}/api/profile/${username}`, {
     next: { revalidate: 3600 },
@@ -84,6 +89,66 @@ export async function getSheet(sheetId: string | number): Promise<Sheet> {
     throw new Error(`Failed to fetch sheet: ${res.status}`);
   }
   return res.json();
+}
+
+function flattenText(text: string | string[] | undefined): string {
+  if (!text) return "";
+  return Array.isArray(text) ? text.join("\n") : text;
+}
+
+function hasFootnoteMarkup(text: string | string[] | undefined): boolean {
+  return /class=["'][^"']*\bfootnote(?:-marker)?\b/.test(flattenText(text));
+}
+
+function isTorahTemimahRef(ref: string | undefined): boolean {
+  return Boolean(ref?.startsWith("Torah Temimah on Torah,"));
+}
+
+async function getTextVersions(ref: string): Promise<SefariaTextVersion[]> {
+  const res = await fetch(
+    `${SEFARIA_API}/api/v3/texts/${encodeURIComponent(ref)}`,
+    { next: { revalidate: 3600 } }
+  );
+  if (!res.ok) {
+    throw new Error(`Failed to fetch text: ${res.status}`);
+  }
+
+  const data = await res.json();
+  return Array.isArray(data.versions) ? data.versions : [];
+}
+
+export async function augmentTorahTemimahSources(
+  sources: SheetSource[]
+): Promise<SheetSource[]> {
+  return Promise.all(
+    sources.map(async (source) => {
+      if (!isTorahTemimahRef(source.ref) || hasFootnoteMarkup(source.text?.he)) {
+        return source;
+      }
+
+      try {
+        const versions = await getTextVersions(source.ref!);
+        const heVersionWithFootnotes = versions.find(
+          (version) => version.language === "he" && hasFootnoteMarkup(version.text)
+        );
+
+        if (!heVersionWithFootnotes?.text) {
+          return source;
+        }
+
+        return {
+          ...source,
+          text: {
+            en: source.text?.en ?? "",
+            he: heVersionWithFootnotes.text,
+          },
+        };
+      } catch (error) {
+        console.error(`Failed to augment Torah Temimah source \"${source.ref}\":`, error);
+        return source;
+      }
+    })
+  );
 }
 
 /** Strip HTML tags from a string */

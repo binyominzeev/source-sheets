@@ -47,6 +47,12 @@ body {
   line-height: 1.8;
 }
 
+.sheet-source-text i.footnote {
+  font-style: normal;
+  font-size: 0.9em;
+  color: color-mix(in srgb, currentColor 78%, white);
+}
+
 /* Sheet content font size (English — controlled by TOC buttons) */
 .sheet-content {
   zoom: var(--sheet-font-size-en);
