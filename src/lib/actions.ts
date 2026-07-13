@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { getSheet, stripHtml } from "@/lib/sefaria";
-import { updateImportedSheet } from "@/lib/storage";
+import { getImportedSheet, updateImportedSheet } from "@/lib/storage";
 import { getSessionUsertag, normalizeUsertag } from "@/lib/auth";
 
 export async function revalidateUserSheets(username: string): Promise<void> {
@@ -22,6 +22,14 @@ export async function revalidateSheet(sheetId: string, username?: string): Promi
   const sessionUsertag = await getSessionUsertag();
   if (sessionUsertag !== normalizedUsertag) {
     throw new Error("Unauthorized");
+  }
+
+  const numericSheetId = Number(sheetId);
+  if (Number.isFinite(numericSheetId)) {
+    const importedSheet = getImportedSheet(normalizedUsertag, numericSheetId);
+    if (importedSheet?.slug) {
+      revalidatePath(`/${normalizedUsertag}/${importedSheet.slug}`);
+    }
   }
 
   try {
