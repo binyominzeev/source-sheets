@@ -47,6 +47,19 @@ export default function HomePage() {
         >
           MyShiurim
         </a>
+        See docs & source on {" "}
+        <a
+          href="https://github.com/binyominzeev/source-sheets"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          GitHub
+        </a>
+      </p>
+    </main>
+  );
+}
       </p>
     </main>
   );

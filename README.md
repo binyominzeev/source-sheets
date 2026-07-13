@@ -47,6 +47,69 @@ Without `AUTH_SECRET`, claim/login endpoints cannot create sessions.
 - Once saved, list links switch to `/:username/:sheetSlug`.
 - Slugs are unique per user tag and editable by the owner.
 
+## User Guide (Practical, 5-Minute Setup)
+
+No coding required. If you can open your Sefaria sheets, you can set this up.
+
+### Why this is useful
+
+- Share your Torah content with clean, memorable URLs instead of long technical links.
+- Keep your sheet list in one place under your own user tag.
+- Import unlisted/private sheets (with direct link) so your page can still organize and surface them.
+- Offer a cleaner reading experience with print mode, bilingual text options, and table of contents.
+- Keep continuity when you rename your public tag: old claimed tags redirect automatically.
+
+### 1) Open your user page
+
+- Go to `/:username` (your intended public tag), for example: `/myshiurim`.
+- If this tag is unclaimed, you can claim it from that page.
+
+### 2) Claim your user tag (one-time)
+
+- Click **Login** on your `/:username` page.
+- In **Claim this user tag**, enter your Sefaria profile slug.
+- Add a unique proof code to your Sefaria bio.
+- Paste the same proof code and set a password.
+- Submit the claim form.
+
+After this, you are signed in as the owner of that tag.
+
+### 3) Import sheets from Sefaria
+
+- While signed in, click **+ Import Sheets**.
+- Paste one or more Sefaria sheet URLs or numeric sheet IDs.
+- Use one per line or comma-separated values.
+- Submit import.
+
+Notes:
+- Duplicate IDs are safely ignored.
+- Import errors are shown per input line.
+- Newly imported sheets appear immediately on your list.
+
+### 4) Manage your sheet URLs (permalinks)
+
+- Open a sheet from your list.
+- Click **Permalink** (owner-only panel).
+- Choose **Save automatic slug** for a quick default, or **Save custom slug** for manual URL text.
+- Copy the permalink and share it.
+
+Result: your public link becomes `/:username/:sheetSlug`, while the original ID route still works as a fallback.
+
+### 5) Change your public tag later (without losing work)
+
+- Go to the new `/:username` you want.
+- In **Already claimed another tag?**, enter your current claimed tag and current password.
+- Click **Move claim here**.
+
+Your imported sheet list moves with you, and old claimed tag URLs redirect to the new one.
+
+### Day-to-day workflow
+
+- Keep using your Sefaria workflow as usual.
+- Use **Refresh** to sync current public sheets.
+- Use **+ Import Sheets** for specific IDs/URLs you want to manage here.
+- Use permalink slugs for the links you share most often.
+
 ## Development
 
 ```bash

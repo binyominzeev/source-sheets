@@ -138,7 +138,8 @@ export default function UserAuthPanel({
         return;
       }
       setChangePassword("");
-      setMessage(`User tag moved successfully. You are now signed in as ${data.newUsertag}.`);
+      const nextUsertag = data?.newUsertag ?? usertag;
+      setMessage(`User tag moved successfully. You are now signed in as ${nextUsertag}.`);
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Network error");
