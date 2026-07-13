@@ -47,7 +47,7 @@ export default function HomePage() {
         >
           MyShiurim
         </a>
-        {" "}See docs & source on{" "}
+        {" "}|See docs & source on{" "}
         <a
           href="https://github.com/binyominzeev/source-sheets"
           target="_blank"
