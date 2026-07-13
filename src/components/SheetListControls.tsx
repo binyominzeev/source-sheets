@@ -42,9 +42,13 @@ function formatDate(dateStr: string): string {
 }
 
 function SheetCard({ sheet, username }: { sheet: SheetSummary; username: string }) {
+  const href = sheet.permalinkSlug
+    ? `/${encodeURIComponent(username)}/${encodeURIComponent(sheet.permalinkSlug)}`
+    : `/sheets/${sheet.id}?from=${encodeURIComponent(username)}`;
+
   return (
     <div className="border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-sm transition-all">
-      <Link href={`/sheets/${sheet.id}?from=${encodeURIComponent(username)}`} className="block">
+      <Link href={href} className="block">
         <h2
           className="text-lg font-semibold text-blue-700 hover:text-blue-900 mb-1"
           dangerouslySetInnerHTML={{ __html: sheet.title || "Untitled" }}

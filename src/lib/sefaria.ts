@@ -16,6 +16,7 @@ export interface SheetSummary {
   created: string;
   updated: string;
   summary?: string;
+  permalinkSlug?: string;
   topics?: Array<{ slug: string; title: { en: string; he: string } }>;
 }
 

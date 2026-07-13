@@ -1,10 +1,19 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { getProfile, getUserSheets, SheetSummary } from "@/lib/sefaria";
 import { getImportedSheets } from "@/lib/storage";
+import {
+  getAuthUser,
+  getSessionUsertag,
+  normalizeUsertag,
+  resolveUsertagRedirect,
+  resolveSefariaSlug,
+} from "@/lib/auth";
 import SheetListControls from "@/components/SheetListControls";
 import RefreshButton from "@/components/RefreshButton";
 import ImportSheetsDialog from "@/components/ImportSheetsDialog";
+import UserAuthPanel from "@/components/UserAuthPanel";
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -13,22 +22,36 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = await params;
+  const usertag = normalizeUsertag(username);
+  const sefariaSlug = resolveSefariaSlug(usertag);
   return {
-    title: `${username} — Source Sheets`,
-    description: `Source sheets by ${username}`,
+    title: `${usertag} — Source Sheets`,
+    description: `Source sheets by ${sefariaSlug}`,
   };
 }
 
 export default async function UserSheetsPage({ params, searchParams }: Props) {
   const { username } = await params;
   const { category } = await searchParams;
+  const normalizedUsertag = normalizeUsertag(username);
+  const { canonicalUsertag, redirectedFrom } = resolveUsertagRedirect(normalizedUsertag);
+  if (redirectedFrom) {
+    const query = category ? `?category=${encodeURIComponent(category)}` : "";
+    redirect(`/${canonicalUsertag}${query}`);
+  }
+
+  const usertag = canonicalUsertag;
+  const sefariaSlug = resolveSefariaSlug(usertag);
+  const authUser = getAuthUser(usertag);
+  const sessionUsertag = await getSessionUsertag();
+  const isOwner = sessionUsertag === usertag;
 
   let sheets: SheetSummary[] = [];
-  let profileName = username;
+  let profileName = usertag;
   let error: string | null = null;
 
   try {
-    const profile = await getProfile(username);
+    const profile = await getProfile(sefariaSlug);
     profileName = profile.full_name || username;
     sheets = await getUserSheets(profile.id);
     // Default sort: newest first
@@ -41,10 +64,22 @@ export default async function UserSheetsPage({ params, searchParams }: Props) {
     error = err instanceof Error ? err.message : "Failed to load sheets";
   }
 
+  const imported = getImportedSheets(usertag);
+  const importedById = new Map(imported.map((s) => [s.id, s]));
+
   // Merge in any manually-imported sheets (server-side JSON store).
-  // We only add sheets that aren't already in the public list to avoid duplicates.
+  // We only add sheets that aren't already in the public list to avoid duplicates,
+  // but if a public sheet is also imported we still attach its optional permalink slug.
   const publicIds = new Set(sheets.map((s) => s.id));
-  const imported = getImportedSheets(username);
+  sheets = sheets.map((sheet) => {
+    const importedVersion = importedById.get(sheet.id);
+    if (!importedVersion?.slug) return sheet;
+    return {
+      ...sheet,
+      permalinkSlug: importedVersion.slug,
+    };
+  });
+
   for (const imp of imported) {
     if (!publicIds.has(imp.id)) {
       sheets.push({
@@ -54,6 +89,7 @@ export default async function UserSheetsPage({ params, searchParams }: Props) {
         views: 0,
         created: imp.importedAt,
         updated: imp.importedAt,
+        permalinkSlug: imp.slug,
       });
     }
   }
@@ -81,7 +117,7 @@ export default async function UserSheetsPage({ params, searchParams }: Props) {
             <p className="text-gray-500 text-sm">
               Source sheets on{" "}
               <a
-                href={`https://www.sefaria.org/profile/${username}?tab=sheets`}
+                href={`https://www.sefaria.org/profile/${sefariaSlug}?tab=sheets`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:underline"
@@ -89,8 +125,19 @@ export default async function UserSheetsPage({ params, searchParams }: Props) {
                 Sefaria
               </a>
             </p>
-            <RefreshButton username={username} />
-            <ImportSheetsDialog username={username} />
+            <UserAuthPanel
+              usertag={usertag}
+              isClaimed={Boolean(authUser)}
+              isOwner={isOwner}
+              sefariaSlug={authUser?.sefariaSlug ?? sefariaSlug}
+              sessionUsertag={sessionUsertag}
+            />
+            {isOwner && (
+              <>
+                <RefreshButton username={usertag} />
+                <ImportSheetsDialog username={usertag} />
+              </>
+            )}
           </div>
         </div>
 
@@ -100,7 +147,7 @@ export default async function UserSheetsPage({ params, searchParams }: Props) {
             <p className="text-red-500 text-sm mt-1">{error}</p>
             <p className="text-gray-500 text-sm mt-3">
               Make sure the username{" "}
-              <code className="bg-gray-100 px-1 rounded">{username}</code> is a
+              <code className="bg-gray-100 px-1 rounded">{usertag}</code> is a
               valid Sefaria profile slug.
             </p>
           </div>
@@ -111,7 +158,7 @@ export default async function UserSheetsPage({ params, searchParams }: Props) {
         ) : (
           <SheetListControls
             sheets={sheets}
-            username={username}
+            username={usertag}
             initialCategorySlug={category}
           />
         )}

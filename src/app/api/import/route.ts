@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { getSheet, stripHtml } from "@/lib/sefaria";
 import { addImportedSheets, getImportedSheets } from "@/lib/storage";
+import { getSessionUsertag, normalizeUsertag } from "@/lib/auth";
 
 /**
  * Parse a Sefaria sheet URL or bare sheet ID and return the numeric sheet ID.
@@ -40,11 +41,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   const username =
     typeof body.username === "string" && body.username.trim()
-      ? body.username.trim()
+      ? normalizeUsertag(body.username)
       : null;
 
   if (!username) {
     return NextResponse.json({ error: "username is required" }, { status: 400 });
+  }
+
+  const sessionUsertag = await getSessionUsertag();
+  if (sessionUsertag !== username) {
+    return NextResponse.json(
+      { error: "Unauthorized: sign in as this user tag first" },
+      { status: 403 }
+    );
   }
 
   if (!Array.isArray(body.urls) || body.urls.length === 0) {

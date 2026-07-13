@@ -1,5 +1,5 @@
 {
-  "binyomin-szanto-varnagy": {
+  "binjomin": {
     "422287": {
       "id": 422287,
       "title": "Siluách háKén – irracionális?",
@@ -33,7 +33,9 @@
     "426366": {
       "id": 426366,
       "title": "Kulmusz halev",
-      "importedAt": "2026-03-11T21:24:49.667Z"
+      "importedAt": "2026-03-11T21:24:49.667Z",
+      "slug": "kulmusz-halev",
+      "slugUpdatedAt": "2026-07-13T10:00:35.753Z"
     },
     "427329": {
       "id": 427329,
@@ -83,7 +85,9 @@
     "446616": {
       "id": 446616,
       "title": "Állatok lelke",
-      "importedAt": "2026-03-11T21:24:49.667Z"
+      "importedAt": "2026-03-11T21:24:49.667Z",
+      "slug": "allatok-lelke",
+      "slugUpdatedAt": "2026-07-13T10:01:48.155Z"
     },
     "448852": {
       "id": 448852,
@@ -208,7 +212,9 @@
     "468432": {
       "id": 468432,
       "title": "Cicit bracha",
-      "importedAt": "2026-03-11T21:24:49.667Z"
+      "importedAt": "2026-03-11T21:24:49.667Z",
+      "slug": "cicit-bracha",
+      "slugUpdatedAt": "2026-07-13T10:07:18.342Z"
     },
     "469029": {
       "id": 469029,
@@ -1983,7 +1989,9 @@
     "731920": {
       "id": 731920,
       "title": "Nászo / jájin veséchár",
-      "importedAt": "2026-05-26T20:30:24.280Z"
+      "importedAt": "2026-05-26T20:30:24.280Z",
+      "slug": "naszo-jajin-vesechar",
+      "slugUpdatedAt": "2026-07-13T10:00:46.500Z"
     }
   }
 }
