@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getProfile, getUserSheets, SheetSummary } from "@/lib/sefaria";
-import { getImportedSheets } from "@/lib/storage";
+import { getImportedSheets, moveImportedSheets } from "@/lib/storage";
 import {
   getAuthUser,
   getSessionUsertag,
@@ -64,7 +64,20 @@ export default async function UserSheetsPage({ params, searchParams }: Props) {
     error = err instanceof Error ? err.message : "Failed to load sheets";
   }
 
-  const imported = getImportedSheets(usertag);
+  let imported = getImportedSheets(usertag);
+
+  // Backward-compatible migration: some older data may still be stored
+  // under the claimed user's Sefaria slug instead of the current usertag.
+  if (imported.length === 0 && authUser?.sefariaSlug) {
+    const legacyKey = normalizeUsertag(authUser.sefariaSlug);
+    if (legacyKey && legacyKey !== usertag) {
+      const migrated = moveImportedSheets(legacyKey, usertag);
+      if (migrated > 0) {
+        imported = getImportedSheets(usertag);
+      }
+    }
+  }
+
   const importedById = new Map(imported.map((s) => [s.id, s]));
 
   // Merge in any manually-imported sheets (server-side JSON store).
