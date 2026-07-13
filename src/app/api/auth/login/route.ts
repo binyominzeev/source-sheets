@@ -27,6 +27,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
-  await setSessionUsertag(usertag);
-  return NextResponse.json({ ok: true, usertag });
+  try {
+    await setSessionUsertag(usertag);
+    return NextResponse.json({ ok: true, usertag });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Failed to create session";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }

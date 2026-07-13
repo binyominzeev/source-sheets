@@ -36,7 +36,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     });
 
     moveImportedSheets(currentUsertag, updated.usertag);
-    await setSessionUsertag(updated.usertag);
+    try {
+      await setSessionUsertag(updated.usertag);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to create session";
+      return NextResponse.json({ error: message }, { status: 500 });
+    }
 
     revalidatePath(`/${currentUsertag}`);
     revalidatePath(`/${updated.usertag}`);

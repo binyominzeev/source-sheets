@@ -31,6 +31,17 @@ export default function UserAuthPanel({
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  async function readJsonResponse<T>(res: Response): Promise<T | null> {
+    const text = await res.text();
+    if (!text) return null;
+
+    try {
+      return JSON.parse(text) as T;
+    } catch {
+      return null;
+    }
+  }
+
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -42,9 +53,9 @@ export default function UserAuthPanel({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usertag, password: loginPassword }),
       });
-      const data = (await res.json()) as { error?: string };
+      const data = await readJsonResponse<{ error?: string }>(res);
       if (!res.ok) {
-        setError(data.error ?? "Login failed");
+        setError(data?.error ?? `Login failed (${res.status})`);
         return;
       }
       setLoginPassword("");
@@ -72,9 +83,9 @@ export default function UserAuthPanel({
           password: claimPassword,
         }),
       });
-      const data = (await res.json()) as { error?: string };
+      const data = await readJsonResponse<{ error?: string }>(res);
       if (!res.ok) {
-        setError(data.error ?? "Claim failed");
+        setError(data?.error ?? `Claim failed (${res.status})`);
         return;
       }
       setClaimPassword("");
@@ -93,9 +104,9 @@ export default function UserAuthPanel({
     setLoading("logout");
     try {
       const res = await fetch("/api/auth/logout", { method: "POST" });
-      const data = (await res.json()) as { error?: string };
+      const data = await readJsonResponse<{ error?: string }>(res);
       if (!res.ok) {
-        setError(data.error ?? "Logout failed");
+        setError(data?.error ?? `Logout failed (${res.status})`);
         return;
       }
       router.refresh();
@@ -121,9 +132,9 @@ export default function UserAuthPanel({
           password: changePassword,
         }),
       });
-      const data = (await res.json()) as { error?: string; newUsertag?: string };
+      const data = await readJsonResponse<{ error?: string; newUsertag?: string }>(res);
       if (!res.ok) {
-        setError(data.error ?? "Tag change failed");
+        setError(data?.error ?? `Tag change failed (${res.status})`);
         return;
       }
       setChangePassword("");
