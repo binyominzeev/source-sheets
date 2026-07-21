@@ -12,10 +12,10 @@ export default function HomePage() {
         <p className="text-gray-500 mb-1"># View a user&apos;s sheets:</p>
         <p>
           <Link
-            href="/binyomin-szanto-varnagy"
+            href="/binjomin"
             className="text-blue-600 hover:underline"
           >
-            /binyomin-szanto-varnagy
+            /binjomin
           </Link>
         </p>
         <p className="text-gray-500 mt-3 mb-1"># View a specific sheet:</p>
