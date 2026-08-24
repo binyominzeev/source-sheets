@@ -4,6 +4,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
+import pngToIco from "png-to-ico";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -31,6 +32,10 @@ async function renderPng(svg, outPath) {
   await mkdir(path.dirname(outPath), { recursive: true });
   await sharp(Buffer.from(svg)).png().toFile(outPath);
   console.log(`wrote ${path.relative(rootDir, outPath)}`);
+}
+
+async function renderPngBuffer(svg) {
+  return sharp(Buffer.from(svg)).png().toBuffer();
 }
 
 async function main() {
@@ -62,6 +67,16 @@ async function main() {
     buildSvg(180, 0.72),
     path.join(rootDir, "src/app/apple-icon.png")
   );
+
+  // favicon.ico for browsers/tabs that request it directly (bypassing the metadata link tags).
+  const icoBuffer = await pngToIco([
+    await renderPngBuffer(buildSvg(16, 0.72)),
+    await renderPngBuffer(buildSvg(32, 0.72)),
+    await renderPngBuffer(buildSvg(48, 0.72)),
+  ]);
+  const icoPath = path.join(rootDir, "src/app/favicon.ico");
+  await writeFile(icoPath, icoBuffer);
+  console.log(`wrote ${path.relative(rootDir, icoPath)}`);
 }
 
 main().catch((err) => {
