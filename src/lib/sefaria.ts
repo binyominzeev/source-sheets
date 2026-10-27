@@ -70,7 +70,7 @@ export async function getProfile(username: string): Promise<SefariaProfile> {
 
 export async function getUserSheets(userId: number): Promise<SheetSummary[]> {
   const res = await fetch(
-    `${SEFARIA_API}/api/sheets/user/${userId}`,
+    `${SEFARIA_API}/api/sheets/user/${userId}/`,
     { next: { revalidate: 3600 } }
   );
   if (!res.ok) {
